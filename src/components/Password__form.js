@@ -1,25 +1,24 @@
 import React from "react";
-import image from "../assets/otp.png";
-import "./loginform.css";
-
-function Otp__verify() {
+import image from "../assets/create__pasword.png";
+function Password__form() {
   return (
     <div className="container">
       <nav>
         <a href="#">LOGO</a>
       </nav>
+
       <div className="main__container">
         <div className="login__container">
-          <h2>Enter your OTP</h2>
+          <h2>Create your Password</h2>
           <form className="admin__login">
-            <input type="email" placeholder="Email Address"></input>
+            <label>New Password</label>
+            <input type="password" placeholder="Password"></input>
+            <label>Confirm Password</label>
+            <input type="password" placeholder="Password"></input>
           </form>
           <button className="btn__admin" type="submit" form="" value="submit">
-            verify
+            Sign In
           </button>
-          <a className="otp__resend" href="#" disabled="disabled">
-            Resend OTP after 30secs
-          </a>
         </div>
 
         <div className="img__container">
@@ -30,4 +29,4 @@ function Otp__verify() {
   );
 }
 
-export default Otp__verify;
+export default Password__form;

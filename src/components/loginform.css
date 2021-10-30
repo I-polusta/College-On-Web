@@ -45,6 +45,22 @@ nav a {
   line-height: 45px;
   color: #039703;
 }
+label {
+  /* Forgot Password */
+  /* 
+  position: absolute;
+  left: 0%;
+  right: 55.28%;
+  top: 22%;
+  bottom: 13.64%; */
+  position: relative;
+  right: 25%;
+  padding: 20px;
+  font-size: 16px;
+  line-height: 16px;
+
+  color: #039703;
+}
 
 input {
   padding: 8px;
@@ -107,7 +123,7 @@ input::placeholder {
   color: #ffffff;
 }
 
-@media only screen and (max-width: 420px) {
+@media only screen and (max-width: 1024px) {
   .main__container {
     align-items: center;
     margin: auto;
