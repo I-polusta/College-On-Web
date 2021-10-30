@@ -61,7 +61,7 @@ input::placeholder {
   color: #039703;
 }
 
-.login__container a {
+.forgot {
   /* Forgot Password */
 
   position: absolute;
@@ -72,6 +72,19 @@ input::placeholder {
   font-weight: normal;
   font-size: 16px;
   /* identical to box height */
+  text-decoration-line: underline;
+
+  color: #039703;
+}
+
+.otp__resend {
+  position: absolute;
+  left: 0%;
+  right: 4%;
+  top: 68%;
+  bottom: 23.64%;
+  font-weight: normal;
+  font-size: 16px;
   text-decoration-line: underline;
 
   color: #039703;
@@ -93,6 +106,7 @@ input::placeholder {
 
   color: #ffffff;
 }
+
 @media only screen and (max-width: 420px) {
   .main__container {
     align-items: center;
@@ -136,7 +150,7 @@ input::placeholder {
     opacity: 0.9;
     border-radius: 8px;
   }
-  .login__container a {
+  .forgot {
     position: absolute;
 
     top: 255px;
