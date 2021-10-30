@@ -16,6 +16,9 @@ nav a {
 
   color: #000000;
 }
+.admin__login {
+  height: max-content;
+}
 
 .img__container {
   margin: auto;
@@ -38,7 +41,7 @@ nav a {
 
 .login__container h2 {
   font-weight: bold;
-  font-size: 38px;
+  font-size: 2rem;
   line-height: 45px;
   color: #039703;
 }
@@ -74,7 +77,7 @@ input::placeholder {
   color: #039703;
 }
 
-button {
+.btn__admin {
   padding: 0px;
   position: relative;
   width: 320px;
@@ -118,7 +121,7 @@ button {
     position: relative;
     right: 50px;
   }
-  form {
+  .admin__login {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -141,7 +144,7 @@ button {
     left: 0px;
   }
 
-  button {
+  .btn__admin {
     position: absolute;
     top: 280px;
 

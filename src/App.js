@@ -1,10 +1,13 @@
 import "./App.css";
-import Admin__login from "./components/Admin__login";
+import Admin__loginForm from "./components/Admin__loginform";
+import Admin__login from "./components/Admin__loginform";
+import Email__verify from "./components/Email__verify";
 
 function App() {
   return (
     <div className="App">
-      <Admin__login />
+      {/* <Admin__loginForm /> */}
+      <Email__verify />
     </div>
   );
 }

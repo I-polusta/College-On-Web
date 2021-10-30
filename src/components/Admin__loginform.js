@@ -1,7 +1,7 @@
 import React from "react";
 import image from "../assets/admin__login.png";
-import "./Admin__login.css";
-function Admin__login() {
+import "./Admin__loginform.css";
+function Admin__loginform() {
   return (
     <div className="container">
       <nav>
@@ -11,12 +11,12 @@ function Admin__login() {
       <div className="main__container">
         <div className="login__container">
           <h2>Admin</h2>
-          <form>
+          <form className="admin__login">
             <input type="email" placeholder="Email Address"></input>
             <input type="password" placeholder="Password"></input>
           </form>
           <a href="#">Forgot Password</a>
-          <button type="submit" form="" value="submit">
+          <button className="btn__admin" type="submit" form="" value="submit">
             Log In
           </button>
         </div>
@@ -29,4 +29,4 @@ function Admin__login() {
   );
 }
 
-export default Admin__login;
+export default Admin__loginform;
