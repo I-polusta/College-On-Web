@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import image from "../assets/create__pasword.png";
 function Password__form() {
   return (

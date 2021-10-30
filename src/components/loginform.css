@@ -1,205 +1,108 @@
-.main__container {
-  padding: 80px;
-  display: flex;
-  justify-content: center;
+.container {
+  background-image: url("../assets/Desktop\ -\ 5.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
 }
-
-nav {
+.container nav {
   display: flex;
   justify-content: flex-start;
 }
-nav a {
+.container > nav > a {
   font-weight: bold;
-  font-size: 32px;
+  font-size: 2.1em;
   line-height: 37px;
   text-align: center;
-
   color: #000000;
 }
-.admin__login {
-  height: max-content;
-}
-
-.img__container {
-  margin: auto;
-}
-
-.login__container {
-  margin: auto;
-
-  width: 390px;
-  height: 371px;
-
+.main__container {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  left: 25%;
+  top: 24%;
+  width: 55%;
+  height: 50%;
   background: linear-gradient(
     137.48deg,
     rgba(0, 226, 0, 0.12) 0%,
     rgba(35, 239, 17, 0.27) 100%
   );
   backdrop-filter: blur(60px);
-  border-radius: 10px;
+  border-radius: 37px;
 }
-
+.login__container,
+.admin__login {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
 .login__container h2 {
   font-weight: bold;
-  font-size: 2rem;
+  font-size: 2.5em;
   line-height: 45px;
   color: #039703;
 }
-label {
-  /* Forgot Password */
-  /* 
-  position: absolute;
-  left: 0%;
-  right: 55.28%;
-  top: 22%;
-  bottom: 13.64%; */
-  position: relative;
-  right: 25%;
-  padding: 20px;
-  font-size: 16px;
-  line-height: 16px;
-
-  color: #039703;
-}
-
 input {
-  padding: 8px;
-  width: 300px;
-  height: 28px;
+  position: relative;
+  right: 0px;
+  margin: 3px;
+  padding: 10px;
+  width: 280px;
+  height: 23%;
   background: #ffffff;
   border-radius: 8px;
-  margin: 10px 0px;
 }
 
 input::placeholder {
-  font-size: 17px;
+  width: 60%;
+  height: 10%;
+  font-size: 1.2em;
   line-height: 20px;
   color: #039703;
+  opacity: 0.5;
 }
 
-.forgot {
-  /* Forgot Password */
-
-  position: absolute;
-  left: 0%;
-  right: 54.28%;
-  top: 64%;
-  bottom: 13.64%;
-  font-weight: normal;
-  font-size: 16px;
-  /* identical to box height */
-  text-decoration-line: underline;
-
-  color: #039703;
-}
-
-.otp__resend {
-  position: absolute;
-  left: 0%;
-  right: 4%;
-  top: 68%;
-  bottom: 23.64%;
-  font-weight: normal;
-  font-size: 16px;
-  text-decoration-line: underline;
-
-  color: #039703;
-}
-
-.btn__admin {
-  padding: 0px;
-  position: relative;
-  width: 320px;
-  height: 46px;
-  left: 0px;
-  top: 20px;
-  background: #16760d;
-  border-radius: 8px;
-  margin: 8px 0px;
-  font-weight: normal;
-  font-size: 24px;
-  line-height: 28px;
-
-  color: #ffffff;
-}
-
-@media only screen and (max-width: 1024px) {
+@media screen and (max-width: 768px) {
+  .container {
+    background-image: none;
+  }
   .main__container {
-    align-items: center;
-    margin: auto;
-    padding: 40px;
-
     display: flex;
     flex-direction: column-reverse;
     justify-content: center;
+    position: absolute;
+    left: 5%;
+    top: 24%;
+    width: 90%;
+    height: 60%;
+    background: linear-gradient(
+      137.48deg,
+      rgba(0, 226, 0, 0.12) 0%,
+      rgba(35, 239, 17, 0.27) 100%
+    );
+    backdrop-filter: blur(60px);
+    border-radius: 37px;
   }
-  nav a {
-    font-size: 25px;
-    line-height: 29px;
-    color: #000000;
-  }
-  .img__container img {
-    width: 70%;
-    height: 70%;
-  }
-  .login__container {
-    margin: 0px 0px 0px 60px;
-    padding: 0px;
-    background: #ffffff;
-  }
-  .login__container h2 {
-    position: relative;
-    right: 50px;
-  }
-  .admin__login {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-  }
-
   input {
-    display: flex;
-    flex-direction: row;
+    margin: 3px;
     padding: 10px;
-    width: 290px;
-    background: rgba(35, 239, 17, 0.09);
-    opacity: 0.9;
+    width: 220px;
+    height: 23%;
+    background: #ffffff;
     border-radius: 8px;
   }
-  .forgot {
-    position: absolute;
 
-    top: 255px;
-    right: 275px;
-    left: 0px;
-  }
-
-  .btn__admin {
-    position: absolute;
-    top: 280px;
-
-    width: 315px;
-    padding: 10px;
-    align-items: center;
-    background: #16760d;
-    border-radius: 8px;
-    font-size: 22px;
-    line-height: 26px;
-    /* identical to box height */
-
-    color: #ffffff;
-  }
   input::placeholder {
-    width: 99px;
-    height: 19px;
-    font-size: 16px;
-    line-height: 19px;
-    /* identical to box height */
-
+    width: 60%;
+    height: 100%;
+    font-size: 1.2em;
+    line-height: 20px;
     color: #039703;
-
-    opacity: 0.6;
-
-    margin: 0px 10px;
+  }
+  img {
+    width: 320px;
+    height: 320px;
   }
 }
