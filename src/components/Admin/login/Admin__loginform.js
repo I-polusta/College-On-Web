@@ -26,7 +26,7 @@ function Admin__loginform() {
               name="password"
             ></input>
           </form>
-          <Link to="resetPassword">
+          <Link to="/">
             <a className="forgot" href="#">
               Forgot Password
             </a>
