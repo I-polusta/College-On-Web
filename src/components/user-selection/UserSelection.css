@@ -25,6 +25,7 @@
   backdrop-filter: blur(60px);
   /* Note: backdrop-filter has minimal browser support */
   border-radius: 10px;
+  cursor: pointer;
 }
 .usercards h2 {
   font-weight: bold;
