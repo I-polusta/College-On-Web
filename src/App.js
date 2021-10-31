@@ -11,9 +11,9 @@ import Password__form from "./components/Password__form";
 function App() {
   return (
     <div className="App">
-      <Admin__loginForm />
+      {/* <Admin__loginForm /> */}
       {/* <Otp__verify /> */}
-      {/* <Password__form /> */}
+      <Password__form /> 
     </div>
   );
 }

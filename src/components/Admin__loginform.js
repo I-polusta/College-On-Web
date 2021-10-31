@@ -21,13 +21,8 @@ function Admin__loginform() {
           <h2>Admin</h2>
           <form className="admin__login">
             <input type="email" placeholder="Email Address" id="email"></input>
-            <span id="emailerror" className="validation-error">
-              {" "}
-            </span>
             <input type="password" placeholder="Password" id="password"></input>
-            <span id="passworderror" className="validation-error">
-              {" "}
-            </span>
+            
           </form>
           <a className="forgot" href="#">
             Forgot Password
