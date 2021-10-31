@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import image from "../assets/admin__login.png";
-import "./loginform.css";
+import image from "../../assets/admin__login.png";
+import "../loginform.css";
 
 function Admin__loginform() {
   return (
