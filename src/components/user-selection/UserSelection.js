@@ -2,6 +2,7 @@ import React from "react";
 import "./UserSelection.css";
 import Student from "../../assets/userS.png";
 import Teacher from "../../assets/userT.png";
+import { Link } from "react-router-dom";
 function UserSelection() {
   return (
     <div className="container">
@@ -12,14 +13,19 @@ function UserSelection() {
         <h3>Log In into your account</h3>
       </div>
       <div className="user__container">
-        <div className="usercards">
-          <img src={Student} alt="user" />
-          <h2>Student</h2>
-        </div>
-        <div className="usercards">
-          <img src={Teacher} alt="user" />
-          <h2>Teacher</h2>
-        </div>
+        <Link to="/student-login">
+          {" "}
+          <div className="usercards">
+            <img src={Student} alt="user" />
+            <h2>Student</h2>
+          </div>{" "}
+        </Link>
+        <Link to="/faculty-login">
+          <div className="usercards">
+            <img src={Teacher} alt="user" />
+            <h2>Teacher</h2>
+          </div>
+        </Link>
       </div>
     </div>
   );

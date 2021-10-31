@@ -1,5 +1,5 @@
 import React from "react";
-import image from "../../assets/admin__login.png";
+import image from "../../../assets/admin__login.png";
 
 function Admin_Signupform() {
   return (

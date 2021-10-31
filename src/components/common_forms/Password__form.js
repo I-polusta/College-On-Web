@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import image from "../assets/create__pasword.png";
+import image from "../../assets/create__pasword.png";
 function Password__form() {
   return (
     <div className="container">
@@ -17,10 +17,10 @@ function Password__form() {
             <label>Confirm Password</label>
             <input type="password" placeholder="Password"></input>
           </form>
-          <Link to='/admin-dashboard'>
-          <button className="btn__admin" type="submit" form="" value="submit">
-            Sign In
-          </button>
+          <Link to="/">
+            <button className="btn__admin" type="submit" form="" value="submit">
+              Update Password
+            </button>
           </Link>
         </div>
 

@@ -26,9 +26,11 @@ function Admin__loginform() {
               name="password"
             ></input>
           </form>
-          <a className="forgot" href="#">
-            Forgot Password
-          </a>
+          <Link to="resetPassword">
+            <a className="forgot" href="#">
+              Forgot Password
+            </a>
+          </Link>
           <Link to="/admin-dashboard">
             <button className="btn__admin" type="submit" form="" value="submit">
               Log In

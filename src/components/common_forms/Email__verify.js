@@ -1,5 +1,5 @@
 import React from "react";
-import image from "../assets/email__verify.png";
+import image from "../../assets/email__verify.png";
 function Email__verify() {
   return (
     <div className="container">

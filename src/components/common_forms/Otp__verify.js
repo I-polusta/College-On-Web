@@ -1,6 +1,5 @@
 import React from "react";
-import image from "../assets/otp.png";
-import "./loginform.css";
+import image from "../../assets/otp.png";
 
 function Otp__verify() {
   return (

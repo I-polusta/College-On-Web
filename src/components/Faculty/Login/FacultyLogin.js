@@ -1,10 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import image from "../../../assets/facultyL.png";
 function FacultyLogin() {
   return (
     <div className="container">
       <nav>
-        <a href="#">LOGO</a>
+        <a href="/">LOGO</a>
       </nav>
 
       <div className="main__container">
@@ -23,9 +24,11 @@ function FacultyLogin() {
               name="password"
             ></input>
           </form>
-          <a className="forgot" href="#">
-            Forgot Password
-          </a>
+          <Link to="resetPassword">
+            <a className="forgot" href="#">
+              Forgot Password
+            </a>
+          </Link>
           <button className="btn__admin" type="submit" form="" value="submit">
             Log In
           </button>
