@@ -17,9 +17,11 @@ function Password__form() {
             <label>Confirm Password</label>
             <input type="password" placeholder="Password"></input>
           </form>
+          <Link to='/admin-dashboard'>
           <button className="btn__admin" type="submit" form="" value="submit">
             Sign In
           </button>
+          </Link>
         </div>
 
         <div className="img__container">

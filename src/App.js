@@ -7,14 +7,18 @@ import Admin__login from "./components/Admin__loginform";
 import Email__verify from "./components/Email__verify";
 import Otp__verify from "./components/Otp__verify";
 import Password__form from "./components/Password__form";
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
   return (
+  <Route>
     <div className="App">
-      {/* <Admin__loginForm /> */}
-      {/* <Otp__verify /> */}
-      <Password__form /> 
+    <Switch>
+      <Route path='/admin-login' component = {Admin__loginform}></Route> 
+    </Switch>
     </div>
+
+    </Route>
   );
 }
 
