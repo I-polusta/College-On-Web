@@ -5,7 +5,7 @@ function StudentLogin() {
   return (
     <div className="container">
       <nav>
-        <a href="#">LOGO</a>
+        <a href="../../../">LOGO</a>
       </nav>
 
       <div className="main__container">

@@ -13,10 +13,10 @@
 }
 
 .usercards {
-  width: 40%;
-  height: 40%;
-  margin: 40px;
-  padding: 40px;
+  width: 100%;
+
+  margin: 0px;
+  padding: 0px;
   background: linear-gradient(
     132.15deg,
     rgba(0, 226, 0, 0.12) 0%,
@@ -37,8 +37,11 @@
 .usercards img {
   margin: auto;
   padding: 20px;
-  width: 75%;
-  height: 75%;
+  width: 50%;
+  height: 50%;
+}
+link {
+  text-decoration: none;
 }
 
 @media screen and (max-width: 1042px) {

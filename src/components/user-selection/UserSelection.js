@@ -13,14 +13,13 @@ function UserSelection() {
         <h3>Log In into your account</h3>
       </div>
       <div className="user__container">
-        <Link to="/student-login">
-          {" "}
+        <Link to="/student-login" style={{ textDecoration: "none" }}>
           <div className="usercards">
             <img src={Student} alt="user" />
             <h2>Student</h2>
-          </div>{" "}
+          </div>
         </Link>
-        <Link to="/faculty-login">
+        <Link to="/faculty-login" style={{ textDecoration: "none" }}>
           <div className="usercards">
             <img src={Teacher} alt="user" />
             <h2>Teacher</h2>
