@@ -21,7 +21,7 @@ function UserSelection() {
         </Link>
         <Link to="/faculty-login" style={{ textDecoration: "none" }}>
           <div className="usercards">
-            <img src={Teacher} alt="user" />
+            <img src={Teacher} alt="user" className="user__img" />
             <h2>Teacher</h2>
           </div>
         </Link>
