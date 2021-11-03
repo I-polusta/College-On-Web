@@ -5,7 +5,7 @@ function StudentLogin() {
   return (
     <div className="container">
       <nav>
-        <a href="../../../">LOGO</a>
+        <a href="/">LOGO</a>
       </nav>
 
       <div className="main__container">
@@ -23,16 +23,16 @@ function StudentLogin() {
               id="password"
               name="password"
             ></input>
+
+            <input type="submit" value="Log In" />
           </form>
           <Link to="resetPassword">
             <a className="forgot" href="#">
               Forgot Password
             </a>
           </Link>
-          <button className="btn__admin" type="submit" form="" value="submit">
-            Log In
-          </button>
-          <span>
+
+          <span className="login__span">
             New User? <a href="/student-sign">Sign In</a>
           </span>
         </div>

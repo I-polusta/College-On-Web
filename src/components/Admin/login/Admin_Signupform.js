@@ -23,11 +23,9 @@ function Admin_Signupform() {
               placeholder="Email Address"
               name="email"
             ></input>
-          </form>
 
-          <button className="btn__admin" type="submit" form="" value="submit">
-            Next
-          </button>
+            <input type="submit" value="Sign In" />
+          </form>
         </div>
 
         <div className="img__container">

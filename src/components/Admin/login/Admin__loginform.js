@@ -41,17 +41,13 @@ function Admin__loginform() {
               onChange={(e) => setPassword(e.target.value)}
             ></input>
             {pwdError && <p>Your password is invalid</p>}
+            <Link to="resetPassword">
+              <a className="forgot" href="#">
+                Forgot Password
+              </a>
+            </Link>
+            <input type="submit" value="Log In" />
           </form>
-          <Link to="resetPassword">
-            <a className="forgot" href="#">
-              Forgot Password
-            </a>
-          </Link>
-          {/* <Link to="/admin-dashboard"> */}
-          <button className="btn__admin" type="submit" onClick={validate}>
-            Log In
-          </button>
-          {/* </Link> */}
         </div>
         <div className="img__container">
           <img src={image} alt="illustration" />
@@ -60,9 +56,5 @@ function Admin__loginform() {
     </div>
   );
 }
-<<<<<<< HEAD
-<ConditionalLink></ConditionalLink>;
-=======
->>>>>>> 90e0702b015e0cff392713d2feb6633521979b92
 
 export default Admin__loginform;

@@ -2,7 +2,7 @@
   background-image: url("../assets/Desktop\ -\ 5.png");
   background-repeat: no-repeat;
   background-size: cover;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
 }
 .container nav {
@@ -12,7 +12,6 @@
 .container > nav > a {
   font-weight: bold;
   font-size: 2.1em;
-  line-height: 37px;
   text-align: center;
   color: #000000;
 }
@@ -39,9 +38,12 @@
   flex-direction: column;
   margin: auto;
 }
+.admin__login {
+  width: 100%;
+}
 .login__container h2 {
   font-weight: bold;
-  font-size: 2.5em;
+  font-size: 2.1em;
   line-height: 45px;
   color: #039703;
 }
@@ -54,9 +56,8 @@
   color: #039703;
 }
 label {
-  text-align: left;
+  align-items: flex-start;
   font-size: 16px;
-  line-height: 19px;
   color: #039703;
   padding: 2px;
 }
@@ -70,21 +71,30 @@ img {
   margin: auto;
   padding: 0px;
 }
+
+.login__span {
+  margin: 10px;
+  font-size: 1.1em;
+}
 input {
-  position: relative;
-  right: 0px;
   margin: 3px;
   padding: 10px;
-  width: 280px;
-  height: 23%;
   background: #ffffff;
   border: none;
   border-radius: 8px;
 }
-.forgot {
-  position: relative;
-  left: 50px;
+input[type="submit"] {
+  align-self: center;
+  cursor: pointer;
+  width: 250px;
+  background: #16760d;
+  border-radius: 8px;
+  font-size: 20px;
+  margin: 3px;
+  padding: 10px;
+  color: #ffffff;
 }
+
 input::placeholder {
   width: 60%;
   height: 10%;
@@ -98,17 +108,6 @@ input::placeholder {
   text-align: left;
   padding: 0px;
   margin: 0px;
-}
-button {
-  padding: 6px;
-  width: 300px;
-  cursor: pointer;
-  background: #16760d;
-  border-radius: 8px;
-  font-size: 24px;
-  line-height: 28px;
-  color: #ffffff;
-  margin: 7px 49px;
 }
 @media screen and (max-width: 1042px) {
   .main__container {
@@ -137,11 +136,11 @@ button {
   }
   .main__container {
     position: absolute;
-    top: 14%;
-    left: 10%;
+    top: 8%;
+    left: 5%;
     flex-direction: column-reverse;
-    width: 80%;
-    height: 75%;
+    width: 90%;
+    height: 90%;
     background: linear-gradient(
       137.48deg,
       rgba(0, 226, 0, 0.12) 0%,
@@ -151,21 +150,17 @@ button {
     border-radius: 24px;
   }
   .img__container {
+    height: 200px;
+    padding: 0px;
+  }
+  .login__container {
     margin: auto;
-    height: 170px;
   }
   img {
-    width: 140px;
+    width: 220px;
     height: 140px;
   }
-  input {
-    margin: 3px;
-    padding: 10px;
-    width: 220px;
-    height: 23%;
-    background: #ffffff;
-    border-radius: 8px;
-  }
+
   .login__container h2 {
     font-size: 1.4em;
   }

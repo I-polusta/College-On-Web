@@ -5,7 +5,7 @@ function Password__form() {
   return (
     <div className="container">
       <nav>
-        <a href="#">LOGO</a>
+        <a href="/">LOGO</a>
       </nav>
 
       <div className="main__container">
@@ -15,13 +15,9 @@ function Password__form() {
             <label>New Password</label>
             <input type="password" placeholder="Password"></input>
             <label>Confirm Password</label>
-            <input type="password" placeholder="Password"></input>
+            <input type="password" placeholder="Confirm Password"></input>
+            <input type="submit" value="Update Password" />
           </form>
-          <Link to="/">
-            <button className="btn__admin" type="submit" form="" value="submit">
-              Update Password
-            </button>
-          </Link>
         </div>
 
         <div className="img__container">

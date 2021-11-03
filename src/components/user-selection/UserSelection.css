@@ -1,5 +1,5 @@
 .text__container {
-  font-size: 2.4em;
+  font-size: 2.2em;
   font-weight: normal;
   text-align: center;
   color: #16760d;
@@ -14,9 +14,7 @@
 
 .usercards {
   width: 100%;
-
-  margin: 0px;
-  padding: 0px;
+  margin: auto;
   background: linear-gradient(
     132.15deg,
     rgba(0, 226, 0, 0.12) 0%,
@@ -45,6 +43,9 @@ link {
 }
 
 @media screen and (max-width: 1042px) {
+  .user__container {
+    justify-content: space-around;
+  }
   .usercards {
     padding: 0;
   }
@@ -56,18 +57,19 @@ link {
 @media screen and (max-width: 694px) {
   .user__container {
     flex-direction: column;
-    align-items: center;
+    align-content: space-between;
   }
   .text__container {
     font-weight: normal;
     font-size: 1.6em;
   }
   .usercards {
-    margin: 10px;
-    width: 100%;
-    height: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 200px;
   }
-  .usercards img {
-    width: 50%;
+  .user__img {
+    width: 200px;
+    height: 200px;
   }
 }

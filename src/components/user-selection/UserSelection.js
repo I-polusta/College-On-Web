@@ -7,7 +7,7 @@ function UserSelection() {
   return (
     <div className="container">
       <nav>
-        <a href="#">LOGO</a>
+        <a href="/">LOGO</a>
       </nav>
       <div className="text__container">
         <h3>Log In into your account</h3>
@@ -15,7 +15,7 @@ function UserSelection() {
       <div className="user__container">
         <Link to="/student-login" style={{ textDecoration: "none" }}>
           <div className="usercards">
-            <img src={Student} alt="user" />
+            <img src={Student} alt="user" className="user__img" />
             <h2>Student</h2>
           </div>
         </Link>

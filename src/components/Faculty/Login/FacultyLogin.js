@@ -23,15 +23,13 @@ function FacultyLogin() {
               id="password"
               name="password"
             ></input>
+            <Link to="resetPassword">
+              <a className="forgot" href="#">
+                Forgot Password
+              </a>
+            </Link>
+            <input type="submit" value="Log In" />
           </form>
-          <Link to="resetPassword">
-            <a className="forgot" href="#">
-              Forgot Password
-            </a>
-          </Link>
-          <button className="btn__admin" type="submit" form="" value="submit">
-            Log In
-          </button>
         </div>
 
         <div className="img__container">

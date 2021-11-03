@@ -1,32 +1,49 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
+import { Redirect, useHistory } from "react-router";
+import service_name from "../../../API/Service";
 import image from "../../../assets/studentL.png";
-function StudentSign() {
+
+function StudentSign(props) {
+  const history = useHistory();
+  const [username, setUsername] = useState();
+  const [name, setName] = useState();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    service_name.verifyEmail(name, username);
+    history.push("/verifyOtp");
+  };
+
+  const handleChange = (e, id) => {
+    if (id == "name") setName(e.target.value);
+    else if (id == "username") setUsername(e.target.value);
+  };
+
   return (
     <div className="container">
       <nav>
-        <a href="#">LOGO</a>
+        <a href="/">LOGO</a>
       </nav>
 
       <div className="main__container">
         <div className="login__container">
           <h2>Student Sign Up</h2>
-          <form className="admin__login">
+          <form className="admin__login" onSubmit={handleSubmit}>
             <input
               type="text"
               placeholder="Enter your Name"
-              id="admin_name"
-              name="admin_name"
+              name="name"
+              onChange={(e) => handleChange(e, "name")}
             ></input>
             <input
               type="email"
               placeholder="Email Address"
-              name="email"
+              name="username"
+              onChange={(e) => handleChange(e, "username")}
             ></input>
+            <input type="submit" value="Get OTP" />
           </form>
-
-          <button className="btn__admin" type="submit" form="" value="submit">
-            Verfiy Email
-          </button>
         </div>
 
         <div className="img__container">
