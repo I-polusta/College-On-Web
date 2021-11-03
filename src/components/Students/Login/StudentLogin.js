@@ -26,10 +26,8 @@ function StudentLogin() {
 
             <input type="submit" value="Log In" />
           </form>
-          <Link to="resetPassword">
-            <a className="forgot" href="#">
-              Forgot Password
-            </a>
+          <Link to="verifyEmail">
+            <a className="forgot">Forgot Password</a>
           </Link>
 
           <span className="login__span">

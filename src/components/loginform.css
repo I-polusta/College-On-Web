@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap");
+
 .container {
   background-image: url("../assets/Desktop\ -\ 5.png");
   background-repeat: no-repeat;
@@ -56,7 +58,7 @@
   color: #039703;
 }
 label {
-  align-items: flex-start;
+  text-align: left;
   font-size: 16px;
   color: #039703;
   padding: 2px;
@@ -86,7 +88,7 @@ input {
 input[type="submit"] {
   align-self: center;
   cursor: pointer;
-  width: 250px;
+  width: 270px;
   background: #16760d;
   border-radius: 8px;
   font-size: 20px;

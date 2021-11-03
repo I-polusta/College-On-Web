@@ -11,7 +11,7 @@ function StudentSign(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    service_name.verifyEmail(name, username);
+    service_name.signupStudent(name, username);
     history.push("/verifyOtp");
   };
 
