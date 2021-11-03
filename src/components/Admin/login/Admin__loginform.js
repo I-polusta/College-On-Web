@@ -60,6 +60,9 @@ function Admin__loginform() {
     </div>
   );
 }
+<<<<<<< HEAD
 <ConditionalLink></ConditionalLink>;
+=======
+>>>>>>> 90e0702b015e0cff392713d2feb6633521979b92
 
 export default Admin__loginform;

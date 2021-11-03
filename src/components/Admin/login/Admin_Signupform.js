@@ -1,19 +1,32 @@
 import React from "react";
-import image from "../../assets/email__verify.png";
-function Email__verify() {
+import image from "../../../assets/admin__login.png";
+
+function Admin_Signupform() {
   return (
     <div className="container">
       <nav>
         <a href="#">LOGO</a>
       </nav>
+
       <div className="main__container">
         <div className="login__container">
-          <h2>Enter your Email Id</h2>
+          <h2>Admin Sign Up</h2>
           <form className="admin__login">
-            <input type="email" placeholder="Email Address"></input>
+            <input
+              type="text"
+              placeholder="Enter your Name"
+              id="admin_name"
+              name="admin_name"
+            ></input>
+            <input
+              type="email"
+              placeholder="Email Address"
+              name="email"
+            ></input>
           </form>
+
           <button className="btn__admin" type="submit" form="" value="submit">
-            verify
+            Next
           </button>
         </div>
 
@@ -25,4 +38,4 @@ function Email__verify() {
   );
 }
 
-export default Email__verify;
+export default Admin_Signupform;
