@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Redirect, useHistory } from "react-router";
-import service_name from "../../../API/Service";
+import service_name from "../../../API/service";
 import image from "../../../assets/studentL.png";
 
 function StudentSign(props) {

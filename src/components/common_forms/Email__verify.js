@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router";
 import { useState } from "react/cjs/react.development";
-import service_name from "../../API/Service";
+import service_name from "../../API/service";
 import image from "../../assets/email__verify.png";
 
 function Email__verify() {

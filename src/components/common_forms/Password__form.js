@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
 import image from "../../assets/create__pasword.png";
-import service_name from "../../API/Service";
+import service_name from "../../API/service";
 function Password__form() {
   const history = useHistory();
   const [pass, setPass] = useState();

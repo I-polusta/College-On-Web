@@ -9,12 +9,19 @@ function Admin__loginform() {
   const [password, setPassword] = useState("");
   const [emailErr, setEmailErr] = useState(false);
   const [pwdError, setPwdError] = useState(false);
-  const validate = () => {
+  const validate = (e) => {
+    e.preventDefault();
     if (!validEmail.test(email)) {
-      setEmailErr(true);
+      setEmailErr("invalid Email ID ");
+    }
+    if (!email) {
+      setEmailErr("Email ID required");
     }
     if (!validPassword.test(password)) {
-      setPwdError(true);
+      setPwdError("invalid password");
+    }
+    if (!password) {
+      setPwdError("password required");
     }
   };
   return (
@@ -31,22 +38,22 @@ function Admin__loginform() {
               type="email"
               placeholder="Email Address"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onBlur={(e) => setEmail(e.target.value)}
             ></input>
-            {emailErr && <p>Your email is invalid</p>}
+            {emailErr && <p>*{emailErr}</p>}
             <input
               type="password"
               placeholder="Password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onBlur={(e) => setPassword(e.target.value)}
             ></input>
-            {pwdError && <p>Your password is invalid</p>}
-            <Link to="resetPassword">
+            {pwdError && <p>*{pwdError}</p>}
+            <Link to="verifyEmail">
               <a className="forgot" href="#">
                 Forgot Password
               </a>
             </Link>
-            <input type="submit" value="Log In" />
+            <input type="submit" value="Log In" onClick={validate} />
           </form>
         </div>
         <div className="img__container">

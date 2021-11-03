@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
-import service_name from "../../API/Service";
+import service_name from "../../API/service";
 import image from "../../assets/otp.png";
 
 function Otp__verify() {
