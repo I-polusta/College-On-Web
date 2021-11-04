@@ -5,17 +5,17 @@ import image from "../../assets/create__pasword.png";
 import service_name from "../../API/Service";
 function Password__form() {
   const history = useHistory();
-  const [pass, setPass] = useState();
+  const [password, setPass] = useState();
   const [newpass, setNewpass] = useState();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (pass === newpass) service_name.createPassword(pass);
+    if (password === newpass) service_name.createPassword(password);
     else alert("wrong password");
   };
 
   const handleChange = (e, id) => {
-    if (id === "pass") setPass(e.target.value);
+    if (id === "password") setPass(e.target.value);
     else if (id === "conpass") setNewpass(e.target.value);
   };
 
@@ -27,14 +27,14 @@ function Password__form() {
 
       <div className="main__container">
         <div className="login__container">
-          <h2>Create Password</h2>
+          <h1>Create Password</h1>
           <form className="admin__login" onSubmit={handleSubmit}>
             <label>New Password</label>
             <input
               type="password"
               placeholder="Password"
-              name="pass"
-              onChange={(e) => handleChange(e, "pass")}
+              name="password"
+              onChange={(e) => handleChange(e, "password")}
             ></input>
             <label>Confirm Password</label>
             <input

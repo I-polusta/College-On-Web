@@ -1,7 +1,7 @@
 import React from "react";
 
 const dashboard = () => {
-  return <div>dashboard main</div>;
+  return <div></div>;
 };
 
 export default dashboard;

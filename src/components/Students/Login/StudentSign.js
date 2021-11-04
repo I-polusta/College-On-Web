@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Redirect, useHistory } from "react-router";
+import { useHistory } from "react-router";
 import service_name from "../../../API/Service";
 import image from "../../../assets/studentL.png";
 
@@ -28,7 +28,7 @@ function StudentSign(props) {
 
       <div className="main__container">
         <div className="login__container">
-          <h2>Student Sign Up</h2>
+          <h1>Student Sign Up</h1>
           <form className="admin__login" onSubmit={handleSubmit}>
             <input
               type="text"

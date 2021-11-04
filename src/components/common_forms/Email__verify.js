@@ -25,7 +25,7 @@ function Email__verify() {
       </nav>
       <div className="main__container">
         <div className="login__container">
-          <h2>Enter your Email Id</h2>
+          <h1>Enter Email Id</h1>
           <form className="admin__login" onSubmit={handleSubmit}>
             <input
               type="email"

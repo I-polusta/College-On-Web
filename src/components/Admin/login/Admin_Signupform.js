@@ -10,7 +10,7 @@ function Admin_Signupform() {
 
       <div className="main__container">
         <div className="login__container">
-          <h2>Admin Sign Up</h2>
+          <h1>Admin Sign Up</h1>
           <form className="admin__login">
             <input
               type="text"

@@ -1,5 +1,5 @@
 import axios from "axios";
-const API_URL = "http://ec1f-49-36-215-67.ngrok.io/";
+const API_URL = "http://95f8-49-36-215-67.ngrok.io/";
 
 const service_name = {
   signupStudent(name, username) {
@@ -34,14 +34,28 @@ const service_name = {
       });
   },
 
-  createPassword(pass) {
+  createPassword(password) {
     const student = {
-      pass,
+      password,
     };
-    console.log(pass);
-    console.log(typeof pass);
+    console.log(password);
+    console.log(typeof password);
+    var isJsonParsable = (student) => {
+      try {
+        JSON.parse(student);
+      } catch (e) {
+        return false;
+      }
+      return password;
+    };
     axios
-      .post(`${API_URL}createStudentNewPassword`, pass)
+      .post(`${API_URL}createStudentNewPassword`, {
+        headers: {
+          "Content-Type": "application/json",
+          accept: "application/json",
+        },
+        password,
+      })
       .then((response) => {
         console.log(response);
       })
@@ -58,6 +72,23 @@ const service_name = {
       .post(`${API_URL}forgotStudentPassword`, studentU)
       .then((response) => {
         console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  },
+
+  verifystudentLogin(username, password) {
+    const student = {
+      username,
+      password,
+    };
+    axios
+      .post(`${API_URL}authenticateStudent`, student)
+      .then((response) => {
+        console.log(response);
+        const token = response.data.token;
+        console.log(token);
       })
       .catch((error) => {
         console.log(error);

@@ -22,7 +22,7 @@ function Otp__verify() {
       </nav>
       <div className="main__container">
         <div className="login__container">
-          <h2>Enter your OTP</h2>
+          <h1>Enter your OTP</h1>
           <form className="admin__login" onSubmit={handleOtp}>
             <input
               type="number"

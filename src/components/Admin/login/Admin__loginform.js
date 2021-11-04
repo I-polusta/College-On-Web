@@ -32,7 +32,7 @@ function Admin__loginform() {
 
       <div className="main__container">
         <div className="login__container">
-          <h2>Admin</h2>
+          <h1>Admin</h1>
           <form className="admin__login">
             <input
               type="email"
