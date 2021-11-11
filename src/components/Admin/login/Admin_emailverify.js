@@ -1,29 +1,27 @@
-import axios from "axios";
-import React, { useState } from "react";
+import React from "react";
 import { useHistory } from "react-router";
-import service_name from "../../../API/Service";
-import image from "../../../assets/studentL.png";
+import { useState } from "react/cjs/react.development";
+import admin_service from "../../API/admin__service";
+import image from "../../assets/email__verify.png";
 
-function StudentSign(props) {
+function Admin_emailverify() {
   const history = useHistory();
   const [username, setUsername] = useState();
-  const [name, setName] = useState();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const user = {
-      name,
+    const adminU = {
       username,
     };
     await service_name
-      .signupStudent(user)
+      .verifyEmailAdmin(adminU)
       .then((response) => {
-        if (response.data === "Valid Email OTP Sent") {
-          console.log(response);
-          history.push("/verifyOtp");
+        console.log(response);
+        if (response.data === "Valid Email\nOtp Sent")
+          history.push("/verifyOtp-admin");
+        if (response.data === "Invalid Email") {
+          alert("user does not exist. PLease create a account");
         }
-        if (response.data === "User already present")
-          window.alert(response.data + " please log in");
       })
       .catch((error) => {
         console.log(error);
@@ -31,8 +29,7 @@ function StudentSign(props) {
   };
 
   const handleChange = (e, id) => {
-    if (id == "name") setName(e.target.value);
-    else if (id == "username") setUsername(e.target.value);
+    if (id == "username") setUsername(e.target.value);
   };
 
   return (
@@ -40,24 +37,17 @@ function StudentSign(props) {
       <nav>
         <a href="/">LOGO</a>
       </nav>
-
       <div className="main__container">
         <div className="login__container">
-          <h1>Student Sign Up</h1>
+          <h1>Enter Email Id</h1>
           <form className="admin__login" onSubmit={handleSubmit}>
-            <input
-              type="text"
-              placeholder="Enter your Name"
-              name="name"
-              onChange={(e) => handleChange(e, "name")}
-            ></input>
             <input
               type="email"
               placeholder="Email Address"
               name="username"
               onChange={(e) => handleChange(e, "username")}
             ></input>
-            <input type="submit" value="Get OTP" />
+            <input type="submit" value="Send OTP" />
           </form>
         </div>
 
@@ -69,4 +59,4 @@ function StudentSign(props) {
   );
 }
 
-export default StudentSign;
+export default Admin_emailverify;

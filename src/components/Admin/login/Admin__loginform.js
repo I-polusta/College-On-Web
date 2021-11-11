@@ -3,27 +3,43 @@ import { Link } from "react-router-dom";
 import image from "../../../assets/admin__login.png";
 import "../../loginform.css";
 import { validEmail, validPassword } from "../../Validation/Validator";
+import { useHistory } from "react-router";
+import admin__service from "../../../API/admin__service";
 
 function Admin__loginform() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [emailErr, setEmailErr] = useState(false);
-  const [pwdError, setPwdError] = useState(false);
-  const validate = (e) => {
+  const history = useHistory();
+  const [username, setUsername] = useState();
+  const [password, setPassword] = useState();
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!validEmail.test(email)) {
-      setEmailErr("invalid Email ID ");
-    }
-    if (!email) {
-      setEmailErr("Email ID required");
-    }
-    if (!validPassword.test(password)) {
-      setPwdError("invalid password");
-    }
-    if (!password) {
-      setPwdError("password required");
-    }
+    const userDetails = {
+      username,
+      password,
+    };
+    await admin__service
+      .verifyAdminLogin(userDetails)
+      .then((response) => {
+        console.log(response);
+        const token = response.data.token;
+        if (response.status === 401) alert("Please create a account to login");
+        if (token) {
+          window.localStorage.setItem(1, token);
+          history.push("/dashboard");
+        }
+        if (!token) {
+          alert("login failed");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
+
+  const handleChange = (e, id) => {
+    if (id == "username") setUsername(e.target.value);
+    else if (id == "password") setPassword(e.target.value);
+  };
+
   return (
     <div className="container">
       <nav>
@@ -33,27 +49,24 @@ function Admin__loginform() {
       <div className="main__container">
         <div className="login__container">
           <h1>Admin</h1>
-          <form className="admin__login">
+          <form className="admin__login" onSubmit={handleSubmit}>
             <input
               type="email"
               placeholder="Email Address"
-              value={email}
-              onBlur={(e) => setEmail(e.target.value)}
+              name="username"
+              onChange={(e) => handleChange(e, "username")}
             ></input>
-            {emailErr && <p>*{emailErr}</p>}
             <input
               type="password"
               placeholder="Password"
-              value={password}
-              onBlur={(e) => setPassword(e.target.value)}
+              onChange={(e) => handleChange(e, "password")}
             ></input>
-            {pwdError && <p>*{pwdError}</p>}
             <Link to="verifyEmail">
               <a className="forgot" href="#">
                 Forgot Password
               </a>
             </Link>
-            <input type="submit" value="Log In" onClick={validate} />
+            <input type="submit" value="Log In" />
           </form>
         </div>
         <div className="img__container">

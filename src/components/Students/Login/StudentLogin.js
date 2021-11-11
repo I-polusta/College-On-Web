@@ -7,10 +7,29 @@ function StudentLogin() {
   const history = useHistory();
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    service_name.verifystudentLogin(username, password);
+    const userDetails = {
+      username,
+      password,
+    };
+    await service_name
+      .verifystudentLogin(userDetails)
+      .then((response) => {
+        console.log(response);
+        const token = response.data.token;
+        if (response.status === 401) alert("Please create a account to login");
+        if (token) {
+          window.localStorage.setItem(1, token);
+          history.push("/dashboard");
+        }
+        if (!token) {
+          alert("login failed");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const handleChange = (e, id) => {

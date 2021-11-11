@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
-import image from "../../assets/create__pasword.png";
-import service_name from "../../API/Service";
-function Password__form() {
+import image from "../../../assets/create__pasword.png";
+import admin__service from "../../../API/admin__service";
+function Admin_resetpassword() {
   const history = useHistory();
   const [password, setPass] = useState();
   const [newpass, setNewpass] = useState();
@@ -14,12 +14,11 @@ function Password__form() {
       password,
     };
     if (password === newpass) {
-      await service_name
-        .createPassword(userpassword)
+      await admin__service
+        .createPasswordAdmin(userpassword)
         .then((response) => {
-          if (response.data === "Password Valid\nStudent SignUp Successful")
-            history.push("/student-login");
           console.log(response);
+          history.push("/admin-login");
         })
         .catch((error) => {
           console.log(error);
@@ -69,4 +68,4 @@ function Password__form() {
   );
 }
 
-export default Password__form;
+export default Admin_resetpassword;
