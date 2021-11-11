@@ -1,0 +1,69 @@
+.text__container {
+  font-size: 2.4em;
+  font-weight: normal;
+  text-align: center;
+  color: #16760d;
+}
+
+.user__container {
+  display: flex;
+  margin: auto;
+  justify-content: space-around;
+  width: 60%;
+}
+
+.usercards {
+  width: 40%;
+  height: 40%;
+  margin: 40px;
+  padding: 40px;
+  background: linear-gradient(
+    132.15deg,
+    rgba(0, 226, 0, 0.12) 0%,
+    rgba(35, 239, 17, 0.27) 100%
+  );
+  backdrop-filter: blur(60px);
+  /* Note: backdrop-filter has minimal browser support */
+  border-radius: 10px;
+}
+.usercards h2 {
+  font-weight: bold;
+  font-size: 1.8em;
+  text-align: center;
+  color: #16760d;
+}
+
+.usercards img {
+  margin: auto;
+  padding: 20px;
+  width: 75%;
+  height: 75%;
+}
+
+@media screen and (max-width: 1042px) {
+  .usercards {
+    padding: 0;
+  }
+  .usercards img {
+    padding: 20px;
+  }
+}
+
+@media screen and (max-width: 694px) {
+  .user__container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .text__container {
+    font-weight: normal;
+    font-size: 1.6em;
+  }
+  .usercards {
+    margin: 10px;
+    width: 100%;
+    height: 100%;
+  }
+  .usercards img {
+    width: 50%;
+  }
+}
