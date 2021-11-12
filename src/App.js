@@ -12,7 +12,7 @@ import Admin_Signupform from "./components/Admin/login/Admin_Signupform";
 import Email__verify from "./components/common_forms/Email__verify";
 import Otp__verify from "./components/common_forms/Otp__verify";
 import Password__form from "./components/common_forms/Password__form";
-import Dashboard from "./pages/admin/Dashboard";
+import Dashboard from "./pages/admin/dashboard";
 import Admin_otp from "./components/Admin/login/Admin_otp";
 import Admin_resetpassword from "./components/Admin/login/Admin_resetpassword";
 
