@@ -24,11 +24,11 @@ function StudentLogin() {
               name="password"
             ></input>
 
+            <Link to="verifyEmail">
+              <a className="forgot">Forgot Password</a>
+            </Link>
             <input type="submit" value="Log In" />
           </form>
-          <Link to="verifyEmail">
-            <a className="forgot">Forgot Password</a>
-          </Link>
 
           <span className="login__span">
             New User? <a href="/student-sign">Sign In</a>

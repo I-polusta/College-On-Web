@@ -1,18 +1,33 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Redirect, useHistory } from "react-router";
-import service_name from "../../../API/service";
+import { useHistory } from "react-router";
+import service_name from "../../../API/Service";
 import image from "../../../assets/studentL.png";
 
 function StudentSign(props) {
   const history = useHistory();
   const [username, setUsername] = useState();
   const [name, setName] = useState();
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    service_name.signupStudent(name, username);
-    history.push("/verifyOtp");
+
+    const user = {
+      name,
+      username,
+    };
+    await service_name
+      .signupStudent(user)
+      .then((response) => {
+        if (response.data === "Valid Email OTP Sent") {
+          console.log(response);
+          history.push("/verifyOtp");
+        }
+        if (response.data === "User already present")
+          window.alert(response.data + " please log in");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const handleChange = (e, id) => {
