@@ -7,18 +7,28 @@ import image from "../../assets/email__verify.png";
 function Email__verify() {
   const history = useHistory();
   const [username, setUsername] = useState();
-
+  const [allEntry, setallEntery] = useState([]);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const studentU = {
       username,
     };
+
+    const newEntry = { ...studentU };
+    setallEntery([...allEntry, newEntry]);
+    let object = {
+      username: newEntry.username,
+    };
     await service_name
       .verifyEmail(studentU)
       .then((response) => {
         console.log(response);
-        if (response.data === "Valid Email\nOtp Sent")
-          history.push("/verifyOtp");
+        if (response.data === "Valid Email\nOtp Sent") {
+          history.push({
+            pathname: "/verifyOtp",
+            state: object,
+          });
+        }
         if (response.data === "Invalid Email") {
           alert("user does not exist. PLease create a account");
         }

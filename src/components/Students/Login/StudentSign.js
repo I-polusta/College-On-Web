@@ -3,11 +3,13 @@ import React, { useState } from "react";
 import { useHistory } from "react-router";
 import service_name from "../../../API/Service";
 import image from "../../../assets/studentL.png";
-
+import logo from "../../../assets/logotbg.png";
 function StudentSign(props) {
   const history = useHistory();
   const [username, setUsername] = useState();
   const [name, setName] = useState();
+
+  const [allEntry, setallEntery] = useState([]);
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -15,15 +17,34 @@ function StudentSign(props) {
       name,
       username,
     };
+    const newEntry = { ...user };
+    setallEntery([...allEntry, newEntry]);
+    let object = {
+      username: newEntry.username,
+    };
     await service_name
       .signupStudent(user)
       .then((response) => {
         if (response.data === "Valid Email OTP Sent") {
           console.log(response);
+          history.push({
+            pathname: "/verifyOtp",
+            state: object,
+          });
+        }
+        if (response.data === "User already present") {
+          window.alert(response.data + " please log in");
+          history.push("student-login");
+        } else if (response.data === "Otp verified create password") {
+          window.confirm(response.data);
+          history.push({
+            pathname: "/resetpassword",
+            state: object,
+          });
+        } else if (response.data === "OTP still not verified") {
+          window.alert(response.data);
           history.push("/verifyOtp");
         }
-        if (response.data === "User already present")
-          window.alert(response.data + " please log in");
       })
       .catch((error) => {
         console.log(error);
@@ -38,7 +59,7 @@ function StudentSign(props) {
   return (
     <div className="container">
       <nav>
-        <a href="/">LOGO</a>
+        <img src={logo} alt="logo" />
       </nav>
 
       <div className="main__container">

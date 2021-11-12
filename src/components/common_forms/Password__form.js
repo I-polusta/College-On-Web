@@ -10,15 +10,18 @@ function Password__form() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const userpassword = {
-      password,
+    let object = {
+      username: history.location.state.username,
+      password: password,
     };
+
     if (password === newpass) {
       await service_name
-        .createPassword(userpassword)
+        .createPassword(object)
         .then((response) => {
           if (response.data === "Password Valid\nStudent SignUp Successful")
             history.push("/student-login");
+
           console.log(response);
         })
         .catch((error) => {

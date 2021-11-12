@@ -7,21 +7,25 @@ function Otp__verify() {
   const history = useHistory();
   const [otp, setOtp] = useState();
   const userOtp = parseInt(otp, 10);
-  const OTP = {
-    userOtp,
+  let object = {
+    userOtp: userOtp,
+    username: history.location.state.username,
   };
   const handleOtp = async (e) => {
     e.preventDefault();
     await service_name
-      .verifyOtp(OTP)
+      .verifyOtp(object)
       .then((response) => {
         console.log(response);
         if (response.data === true) {
           console.log(response);
-          history.push("/resetpassword");
+          history.push({
+            pathname: "/resetpassword",
+            state: object,
+          });
         } else if (response.data === false) {
-          console.log(typeof OTP);
-           console.log(typeof otp_int);
+          console.log(typeof object);
+          console.log(userOtp);
           window.alert("wrong");
         }
       })

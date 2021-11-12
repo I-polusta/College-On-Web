@@ -62,6 +62,10 @@ label {
   color: #039703;
   padding: 2px;
 }
+nav img {
+  width: 60px;
+  height: 60px;
+}
 img {
   position: relative;
   top: 17%;
