@@ -10,34 +10,63 @@ function Admin__loginform() {
   const history = useHistory();
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
+  const [isSubmit, setIsSubmit] = useState(false);
+  const [userError, setUserError] = useState({});
   const handleSubmit = async (e) => {
     e.preventDefault();
     const userDetails = {
       username,
       password,
     };
-    await admin__service
-      .verifyAdminLogin(userDetails)
-      .then((response) => {
-        console.log(response);
-        const token = response.data.token;
-        if (response.status === 401) alert("Please create a account to login");
-        if (token) {
-          window.localStorage.setItem(1, token);
-          history.push("/dashboard");
-        }
-        if (!token) {
-          alert("login failed");
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    setUserError(Validate(userDetails));
+    if (Object.keys(userError).length === 0 && isSubmit) {
+      await admin__service
+        .verifyAdminLogin(userDetails)
+        .then((response) => {
+          console.log(response);
+          const token = response.data.token;
+          if (response.status === 401)
+            alert("Please create a account to login");
+          if (token) {
+            window.localStorage.setItem(1, token);
+            history.push("/dashboard");
+          }
+          if (!token) {
+            alert("login failed");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   };
-
   const handleChange = (e, id) => {
     if (id == "username") setUsername(e.target.value);
     else if (id == "password") setPassword(e.target.value);
+  };
+  const Validate = (values) => {
+    const error = {};
+    const regexMail =
+      /^[\w!#$%&'+/=?`{|}~^-]+(?:\.[\w!#$%&'+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}/;
+    const regexPass =
+      /^[\w!#$%&'+/=?`{|}~^-]+(?:\.[\w!#$%&'+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}/;
+
+    if (!values.username) {
+      error.email = "**Email Is Required!";
+    } else if (!regexMail.test(values.username)) {
+      error.email = "**This is not a valid Email format!";
+    }
+    if (!values.password) {
+      error.password = "**Password Is Required!";
+    } else if (values.password.length < 8) {
+      error.password = "**Password must be more than 8 characters!";
+    } else if (values.password.length > 12) {
+      error.password = "**Password must be less than 12 characters!";
+    } else if (!regexPass.test(values.password)) {
+      error.password = "**This is not a valid password!";
+    }
+
+    return error;
   };
 
   return (
@@ -55,12 +84,14 @@ function Admin__loginform() {
               placeholder="Email Address"
               name="username"
               onChange={(e) => handleChange(e, "username")}
-            ></input>
+            ></input>{" "}
+            <p className="required">{userError.email}</p>
             <input
               type="password"
               placeholder="Password"
               onChange={(e) => handleChange(e, "password")}
             ></input>
+            <p className="required">{userError.password}</p>
             <Link to="verifyEmail">
               <a className="forgot" href="#">
                 Forgot Password
