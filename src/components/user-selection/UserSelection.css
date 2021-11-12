@@ -1,5 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap");
 .text__container {
-  font-size: 2.4em;
+  font-size: 2.2em;
   font-weight: normal;
   text-align: center;
   color: #16760d;
@@ -8,15 +9,12 @@
 .user__container {
   display: flex;
   margin: auto;
+  margin-top: 10%;
   justify-content: space-around;
   width: 60%;
 }
 
 .usercards {
-  width: 40%;
-  height: 40%;
-  margin: 40px;
-  padding: 40px;
   background: linear-gradient(
     132.15deg,
     rgba(0, 226, 0, 0.12) 0%,
@@ -25,6 +23,7 @@
   backdrop-filter: blur(60px);
   /* Note: backdrop-filter has minimal browser support */
   border-radius: 10px;
+  cursor: pointer;
 }
 .usercards h2 {
   font-weight: bold;
@@ -36,34 +35,40 @@
 .usercards img {
   margin: auto;
   padding: 20px;
-  width: 75%;
-  height: 75%;
+}
+link {
+  text-decoration: none;
 }
 
 @media screen and (max-width: 1042px) {
-  .usercards {
-    padding: 0;
-  }
-  .usercards img {
-    padding: 20px;
+  .user__container {
+    width: 100%;
   }
 }
 
 @media screen and (max-width: 694px) {
   .user__container {
     flex-direction: column;
+
     align-items: center;
   }
   .text__container {
     font-weight: normal;
     font-size: 1.6em;
   }
+
   .usercards {
-    margin: 10px;
     width: 100%;
-    height: 100%;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 70%;
   }
-  .usercards img {
-    width: 50%;
+  .user__img {
+    position: relative;
+    top: 0px;
+    width: 200px;
+    height: 200px;
+    /* display: none; */
   }
 }

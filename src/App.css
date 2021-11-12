@@ -1,10 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap");
+
 .App {
   text-align: center;
 }
 
 * {
-  font-family: Roboto;
-  font-style: normal;
   overflow-x: hidden;
 }
 
@@ -41,4 +41,18 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span,
+input,
+label,
+p,
+text {
+  font-family: "Roboto", sans-serif;
 }

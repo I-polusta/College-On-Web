@@ -1,18 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import image from "../../assets/admin__login.png";
-import "../loginform.css";
-
-function Admin__loginform() {
+import image from "../../../assets/facultyL.png";
+function FacultyLogin() {
   return (
     <div className="container">
       <nav>
-        <a href="#">LOGO</a>
+        <a href="/">LOGO</a>
       </nav>
 
       <div className="main__container">
         <div className="login__container">
-          <h2>Admin</h2>
+          <h1>Faculty</h1>
           <form className="admin__login">
             <input
               type="email"
@@ -25,15 +23,13 @@ function Admin__loginform() {
               id="password"
               name="password"
             ></input>
+            <Link to="resetPassword">
+              <a className="forgot" href="#">
+                Forgot Password
+              </a>
+            </Link>
+            <input type="submit" value="Log In" />
           </form>
-          <a className="forgot" href="#">
-            Forgot Password
-          </a>
-          <Link to="/admin-dashboard">
-            <button className="btn__admin" type="submit" form="" value="submit">
-              Log In
-            </button>
-          </Link>
         </div>
 
         <div className="img__container">
@@ -44,4 +40,4 @@ function Admin__loginform() {
   );
 }
 
-export default Admin__loginform;
+export default FacultyLogin;

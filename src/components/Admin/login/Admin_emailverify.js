@@ -1,34 +1,24 @@
 import React from "react";
 import { useHistory } from "react-router";
 import { useState } from "react/cjs/react.development";
-import service_name from "../../API/Service";
+import admin_service from "../../API/admin__service";
 import image from "../../assets/email__verify.png";
 
-function Email__verify() {
+function Admin_emailverify() {
   const history = useHistory();
   const [username, setUsername] = useState();
-  const [allEntry, setallEntery] = useState([]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const studentU = {
+    const adminU = {
       username,
     };
-
-    const newEntry = { ...studentU };
-    setallEntery([...allEntry, newEntry]);
-    let object = {
-      username: newEntry.username,
-    };
     await service_name
-      .verifyEmail(studentU)
+      .verifyEmailAdmin(adminU)
       .then((response) => {
         console.log(response);
-        if (response.data === "Valid Email\nOtp Sent") {
-          history.push({
-            pathname: "/verifyOtp",
-            state: object,
-          });
-        }
+        if (response.data === "Valid Email\nOtp Sent")
+          history.push("/verifyOtp-admin");
         if (response.data === "Invalid Email") {
           alert("user does not exist. PLease create a account");
         }
@@ -69,4 +59,4 @@ function Email__verify() {
   );
 }
 
-export default Email__verify;
+export default Admin_emailverify;
