@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
-import service_name from "../../API/Service";
-import image from "../../assets/otp.png";
+import admin__service from "../../../API/admin__service";
+import image from "../../../assets/otp.png";
 
-function Otp__verify() {
+function Admin_otp() {
   const history = useHistory();
   const [otp, setOtp] = useState();
   const userOtp = parseInt(otp, 10);
@@ -12,16 +12,17 @@ function Otp__verify() {
   };
   const handleOtp = async (e) => {
     e.preventDefault();
-    await service_name
-      .verifyOtp(OTP)
+
+    await admin__service
+      .verifyOtpAdmin(OTP)
       .then((response) => {
         console.log(response);
         if (response.data === true) {
           console.log(response);
-          history.push("/resetpassword");
+          history.push("/resetpassword-admin");
         } else if (response.data === false) {
           console.log(typeof OTP);
-           console.log(typeof otp_int);
+          console.log(typeof userOtp);
           window.alert("wrong");
         }
       })
@@ -64,4 +65,4 @@ function Otp__verify() {
   );
 }
 
-export default Otp__verify;
+export default Admin_otp;

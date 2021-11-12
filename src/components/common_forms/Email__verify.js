@@ -8,10 +8,24 @@ function Email__verify() {
   const history = useHistory();
   const [username, setUsername] = useState();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    service_name.verifyEmail(username);
-    history.push("/verifyOtp");
+    const studentU = {
+      username,
+    };
+    await service_name
+      .verifyEmail(studentU)
+      .then((response) => {
+        console.log(response);
+        if (response.data === "Valid Email\nOtp Sent")
+          history.push("/verifyOtp");
+        if (response.data === "Invalid Email") {
+          alert("user does not exist. PLease create a account");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const handleChange = (e, id) => {
@@ -25,7 +39,7 @@ function Email__verify() {
       </nav>
       <div className="main__container">
         <div className="login__container">
-          <h2>Enter your Email Id</h2>
+          <h1>Enter Email Id</h1>
           <form className="admin__login" onSubmit={handleSubmit}>
             <input
               type="email"

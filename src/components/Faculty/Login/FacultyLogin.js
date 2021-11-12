@@ -10,7 +10,7 @@ function FacultyLogin() {
 
       <div className="main__container">
         <div className="login__container">
-          <h2>Faculty</h2>
+          <h1>Faculty</h1>
           <form className="admin__login">
             <input
               type="email"
