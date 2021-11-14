@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import image from "../../../assets/admin__login.png";
 import "../../loginform.css";
-import { validEmail, validPassword } from "../../Validation/Validator";
 import { useHistory } from "react-router";
 import admin__service from "../../../API/admin__service";
 
@@ -10,7 +9,6 @@ function Admin__loginform() {
   const history = useHistory();
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
-  const [isSubmit, setIsSubmit] = useState(false);
   const [userError, setUserError] = useState({});
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,7 +17,7 @@ function Admin__loginform() {
       password,
     };
     setUserError(Validate(userDetails));
-    if (Object.keys(userError).length === 0 && isSubmit) {
+    if (Object.keys(userError).length === 0) {
       await admin__service
         .verifyAdminLogin(userDetails)
         .then((response) => {
@@ -28,11 +26,17 @@ function Admin__loginform() {
           if (response.status === 401)
             alert("Please create a account to login");
           if (token) {
-            window.localStorage.setItem(1, token);
+            window.localStorage.setItem("admin_token", token);
             history.push("/dashboard");
           }
           if (!token) {
-            alert("login failed");
+            if (response.data === "false")
+              alert("Incorrect Username or Password. Try Again");
+            if (response.data === "User not found");
+            {
+              alert("User not found. Please create your account");
+              history.push("/admin-signup");
+            }
           }
         })
         .catch((error) => {
@@ -48,8 +52,7 @@ function Admin__loginform() {
     const error = {};
     const regexMail =
       /^[\w!#$%&'+/=?`{|}~^-]+(?:\.[\w!#$%&'+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}/;
-    const regexPass =
-      /^[\w!#$%&'+/=?`{|}~^-]+(?:\.[\w!#$%&'+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}/;
+    const regexPass = /^[a-zA-Z0-9@#!$%^_]{8,}$/;
 
     if (!values.username) {
       error.email = "**Email Is Required!";
@@ -72,7 +75,7 @@ function Admin__loginform() {
   return (
     <div className="container">
       <nav>
-        <a href="#">LOGO</a>
+        <a href="/">LOGO</a>
       </nav>
 
       <div className="main__container">
@@ -92,11 +95,7 @@ function Admin__loginform() {
               onChange={(e) => handleChange(e, "password")}
             ></input>
             <p className="required">{userError.password}</p>
-            <Link to="verifyEmail">
-              <a className="forgot" href="#">
-                Forgot Password
-              </a>
-            </Link>
+            <a href="verifyEmail">Forgot Password</a>
             <input type="submit" value="Log In" />
           </form>
         </div>

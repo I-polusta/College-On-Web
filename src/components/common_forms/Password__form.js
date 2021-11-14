@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+
 import { useHistory } from "react-router";
 import image from "../../assets/create__pasword.png";
 import service_name from "../../API/Service";
@@ -21,7 +21,6 @@ function Password__form() {
         .then((response) => {
           if (response.data === "Password Valid\nStudent SignUp Successful")
             history.push("/student-login");
-
           console.log(response);
         })
         .catch((error) => {

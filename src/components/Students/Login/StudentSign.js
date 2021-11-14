@@ -8,26 +8,30 @@ function StudentSign(props) {
   const history = useHistory();
   const [username, setUsername] = useState();
   const [name, setName] = useState();
-  const [isSubmit, setIsSubmit] = useState(false);
   const [userError, setUserError] = useState({});
   const [allEntry, setallEntery] = useState([]);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsSubmit(true);
     const user = {
       name,
       username,
     };
     setUserError(Validate(user));
-    if (Object.keys(userError).length === 0 && isSubmit) {
+    if (Object.keys(userError).length === 0) {
       const newEntry = { ...user };
       setallEntery([...allEntry, newEntry]);
       let object = { username: newEntry.username };
       await service_name
         .signupStudent(user)
         .then((response) => {
+          console.log(response);
           if (response.data === "Valid Email OTP Sent") {
-            console.log(response);
+            history.push({
+              pathname: "/verifyOtp",
+              state: object,
+            });
+          }
+          if (response.data === "User not verified") {
             history.push({
               pathname: "/verifyOtp",
               state: object,
@@ -42,9 +46,6 @@ function StudentSign(props) {
               pathname: "/resetpassword",
               state: object,
             });
-          } else if (response.data === "OTP still not verified") {
-            window.alert(response.data);
-            history.push("/verifyOtp");
           }
         })
         .catch((error) => {
@@ -63,8 +64,7 @@ function StudentSign(props) {
     const regexMail =
       /^[\w!#$%&'+/=?`{|}~^-]+(?:\.[\w!#$%&'+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}/;
     const regexName = /^[A-Za-z. ]{3,30}$/;
-    const regexPass =
-      /^[\w!#$%&'+/=?`{|}~^-]+(?:\.[\w!#$%&'+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}/;
+    const regexPass = /^[a-zA-Z0-9@#!$%^_]{8,}$/;
 
     if (!values.name) {
       error.Name = "**Name Is Required!";

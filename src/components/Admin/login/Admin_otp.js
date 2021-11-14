@@ -7,22 +7,23 @@ function Admin_otp() {
   const history = useHistory();
   const [otp, setOtp] = useState();
   const userOtp = parseInt(otp, 10);
-  const OTP = {
-    userOtp,
+  let object = {
+    userOtp: userOtp,
+    username: history.location.state.username,
   };
   const handleOtp = async (e) => {
     e.preventDefault();
 
     await admin__service
-      .verifyOtpAdmin(OTP)
+      .verifyOtpAdmin(object)
       .then((response) => {
         console.log(response);
         if (response.data === true) {
-          console.log(response);
-          history.push("/resetpassword-admin");
+          history.push({
+            pathname: "/resetpassword-admin",
+            state: object,
+          });
         } else if (response.data === false) {
-          console.log(typeof OTP);
-          console.log(typeof userOtp);
           window.alert("wrong");
         }
       })

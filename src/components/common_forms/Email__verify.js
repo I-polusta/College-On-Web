@@ -23,6 +23,7 @@ function Email__verify() {
       .verifyEmail(studentU)
       .then((response) => {
         console.log(response);
+
         if (response.data === "Valid Email\nOtp Sent") {
           history.push({
             pathname: "/verifyOtp",

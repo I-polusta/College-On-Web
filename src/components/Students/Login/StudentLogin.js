@@ -7,9 +7,7 @@ function StudentLogin() {
   const history = useHistory();
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
-  const [isSubmit, setIsSubmit] = useState(false);
   const [userError, setUserError] = useState({});
-  const [allEntry, setallEntery] = useState([]);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const userDetails = {
@@ -17,7 +15,7 @@ function StudentLogin() {
       password,
     };
     setUserError(Validate(userDetails));
-    if (Object.keys(userError).length === 0 && isSubmit) {
+    if (Object.keys(userError).length === 0) {
       await service_name
         .verifystudentLogin(userDetails)
         .then((response) => {
@@ -26,11 +24,17 @@ function StudentLogin() {
           if (response.status === 401)
             alert("Please create a account to login");
           if (token) {
-            window.localStorage.setItem(1, token);
+            window.localStorage.setItem("student_token", token);
             history.push("/dashboard");
           }
           if (!token) {
-            alert("login failed");
+            if (response.data === "false")
+              alert("Incorrect Username or Password. Try Again");
+            if (response.data === "User not found");
+            {
+              alert("User not found. Please create your account");
+              history.push("/student-sign");
+            }
           }
         })
         .catch((error) => {
@@ -48,8 +52,7 @@ function StudentLogin() {
     const error = {};
     const regexMail =
       /^[\w!#$%&'+/=?`{|}~^-]+(?:\.[\w!#$%&'+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}/;
-    const regexPass =
-      /^[\w!#$%&'+/=?`{|}~^-]+(?:\.[\w!#$%&'+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}/;
+    const regexPass = /^[a-zA-Z0-9@#!$%^_]{8,}$/;
 
     if (!values.username) {
       error.email = "**Email Is Required!";
@@ -77,7 +80,9 @@ function StudentLogin() {
 
       <div className="main__container">
         <div className="login__container">
-          <h1>Student</h1>
+          <div>
+            <h1>Student</h1>
+          </div>
           <form className="admin__login" onSubmit={handleSubmit}>
             <input
               type="email"
@@ -95,14 +100,13 @@ function StudentLogin() {
             ></input>
             <p className="required">{userError.password}</p>
 
-            <Link to="verifyEmail">
-              <a className="forgot">Forgot Password</a>
-            </Link>
+            <a href="verifyEmail">Forgot Password</a>
+
             <input type="submit" value="Log In" />
           </form>
 
           <span className="login__span">
-            New User? <a href="/student-sign">Sign In</a>
+            New User? <a href="/student-sign">Sign Up</a>
           </span>
         </div>
 

@@ -13,19 +13,17 @@ function Otp__verify() {
   };
   const handleOtp = async (e) => {
     e.preventDefault();
+
     await service_name
       .verifyOtp(object)
       .then((response) => {
         console.log(response);
         if (response.data === true) {
-          console.log(response);
           history.push({
             pathname: "/resetpassword",
             state: object,
           });
         } else if (response.data === false) {
-          console.log(typeof object);
-          console.log(userOtp);
           window.alert("wrong");
         }
       })
@@ -35,6 +33,22 @@ function Otp__verify() {
   };
   const handleChangeOtp = (e, id) => {
     if (id == "otp") Number(setOtp(e.target.value));
+  };
+
+  let studentU = {
+    username: history.location.state.username,
+  };
+  const handleresend = async (e) => {
+    e.preventDefault();
+    await service_name
+      .verifyEmail(studentU)
+      .then((response) => {
+        console.log(response);
+        alert("OTP SENT");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -55,8 +69,8 @@ function Otp__verify() {
 
             <input type="submit" value="Verify" />
           </form>
-          <a className="otp__resend" href="#" disabled="disabled">
-            Resend OTP after 30secs
+          <a className="otp__resend" onClick={handleresend}>
+            Resend OTP
           </a>
         </div>
 

@@ -1,6 +1,6 @@
 import axios from "axios";
 // const API_URL = "http://c2b1-157-37-147-85.ngrok.io/";
-const API_URL = "http://192.168.119.236:8080/";
+const API_URL = "http://192.168.49.236:8080/";
 
 class admin_service {
   signupAdmin(admindetails) {

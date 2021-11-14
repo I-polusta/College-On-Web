@@ -10,15 +10,17 @@ function Admin_resetpassword() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const userpassword = {
-      password,
+    let userpassword = {
+      username: history.location.state.username,
+      password: password,
     };
     if (password === newpass) {
       await admin__service
         .createPasswordAdmin(userpassword)
         .then((response) => {
           console.log(response);
-          history.push("/admin-login");
+          if (response.data === "Password Valid SignUp Successful")
+            history.push("/admin-login");
         })
         .catch((error) => {
           console.log(error);

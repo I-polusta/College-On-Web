@@ -43,9 +43,8 @@
   width: 100%;
 }
 .login__container h1 {
-  font-weight: 900;
-  font-size: 2em;
-  line-height: 45px;
+  font-weight: bold;
+  font-size: 2.5em;
   color: #039703;
 }
 .login__container a {
@@ -63,8 +62,8 @@ label {
   padding: 2px;
 }
 nav img {
-  width: 60px;
-  height: 60px;
+  width: 8vw;
+  height: 8vw;
 }
 img {
   position: relative;
@@ -78,26 +77,27 @@ img {
 }
 
 .login__span {
+  font-weight: bold;
   margin: 10px;
-  font-size: 1.1em;
+  font-size: 1.2em;
 }
 input {
-  margin: 3px;
+  margin-top: 10px;
   padding: 10px;
   background: #ffffff;
   border: none;
   border-radius: 8px;
 }
 input[type="submit"] {
-  align-self: center;
   cursor: pointer;
-  width: 270px;
+  width: 30ch;
+  align-items: center;
   background: #16760d;
   border-radius: 8px;
   font-size: 20px;
-  margin: 3px;
   padding: 10px;
   color: #ffffff;
+  margin-top: 10px;
 }
 
 input::placeholder {
@@ -121,7 +121,13 @@ p {
   padding: 0px;
   font-size: 0.99em;
 }
-@media screen and (max-width: 1042px) {
+form a {
+  margin: 0;
+  display: flex;
+  justify-content: flex-start;
+}
+
+@media screen and (max-width: 1080px) {
   .main__container {
     position: absolute;
     left: 5%;
@@ -140,6 +146,9 @@ p {
     width: 280px;
     height: 280px;
   }
+  input[type="submit"] {
+    width: 25ch;
+  }
 }
 
 @media screen and (max-width: 694px) {
@@ -151,8 +160,8 @@ p {
     top: 8%;
     left: 5%;
     flex-direction: column-reverse;
-    width: 90%;
-    height: 90%;
+    width: 90vw;
+    height: 90vh;
     background: linear-gradient(
       137.48deg,
       rgba(0, 226, 0, 0.12) 0%,

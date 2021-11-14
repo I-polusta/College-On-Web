@@ -1,33 +1,32 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-export class Add__faculty extends Component {
-  handleSubmit = (e) => {
+export class Edit_Faculty extends Component {
+  handleEdit = (e) => {
     e.preventDefault();
-    const email = this.getEmail.value;
-    const dept = this.getDept.value;
-    const name = this.getName.value;
+    const newEmail = this.getEmail.value;
+    const newDept = this.getDept.value;
+    const newName = this.getName.value;
     const data = {
-      id: new Date(),
-      name,
-      email,
-      dept,
-      editing: false,
+      newName,
+      newEmail,
+      newDept,
     };
     this.props.dispatch({
-      type: "ADD_FACULTY",
-      data,
+      type: "UPDATE_FACULTY",
+      id: this.props.faculty.id,
+      data: data,
     });
   };
   render() {
     return (
       <div>
-        <h1>Create Post</h1>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleEdit}>
           <input
             required
             type="text"
             ref={(input) => (this.getName = input)}
+            defaultValue={this.props.faculty.name}
             placeholder="Enter Teacher Name"
           />
           <br />
@@ -36,11 +35,15 @@ export class Add__faculty extends Component {
           <input
             required
             type="email"
+            defaultValue={this.props.faculty.email}
             ref={(input) => (this.getEmail = input)}
             placeholder="Enter Email"
           />
           <label> Select Branch </label>
-          <select ref={(input) => (this.getDept = input)}>
+          <select
+            ref={(input) => (this.getDept = input)}
+            defaultValue={this.props.faculty.dept}
+          >
             <option> CSE</option>
             <option> CS</option>
             <option> CSE(DS)</option>
@@ -52,11 +55,11 @@ export class Add__faculty extends Component {
             <option> ME</option>
             <option> CIVIL</option>
           </select>
-          <button>ADD</button>
+          <button>UPDATE</button>
         </form>
       </div>
     );
   }
 }
 
-export default connect()(Add__faculty);
+export default connect()(Edit_Faculty);

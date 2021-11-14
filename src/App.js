@@ -1,8 +1,6 @@
 import { Route, Switch } from "react-router";
 import "./App.css";
-import Admin__layout from "./components/Admin/dashboard__layout/layout/Admin__layout";
 import UserSelection from "./components/user-selection/UserSelection";
-
 import Routes from "./components/Routes";
 import Admin__loginform from "./components/Admin/login/Admin__loginform";
 import FacultyLogin from "./components/Faculty/Login/FacultyLogin";
@@ -15,11 +13,16 @@ import Password__form from "./components/common_forms/Password__form";
 import Dashboard from "./pages/admin/dashboard";
 import Admin_otp from "./components/Admin/login/Admin_otp";
 import Admin_resetpassword from "./components/Admin/login/Admin_resetpassword";
+import Create_announcement from "./pages/admin/Create_announcement";
+import Announcements from "./pages/admin/Announcements";
+import Navbar from "./navbar/Navbar";
+import Add__faculty from "./pages/admin/Add__faculty";
+import Faculty from "./pages/admin/Faculty";
 
 function App() {
   return (
     <div className="App">
-      <Switch>
+      {/* <Switch>
         <Route path="/admin-login" component={Admin__loginform}></Route>
         <Route path="/admin-signup" component={Admin_Signupform}></Route>
         <Route path="/verifyEmail" component={Email__verify}></Route>
@@ -31,8 +34,14 @@ function App() {
         <Route path="/admin-dashboard" component={Dashboard}></Route>
         <Route path="/verifyOtp-admin" component={Admin_otp} />
         <Route path="/resetpassword-admin" component={Admin_resetpassword} />
-        <Route path="/" component={UserSelection}></Route>
-      </Switch>
+        <Route path="/create-announcements" component={Create_announcement} />
+        <Route path="/all-announcements" component={Announcements} />
+         <Route path="/" component={UserSelection}></Route> 
+      </Switch> */}
+      {/* <Navbar /> */}
+
+      <Add__faculty />
+      <Faculty />
     </div>
   );
 }
