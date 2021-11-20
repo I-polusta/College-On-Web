@@ -1,0 +1,48 @@
+.view__announcements__container {
+  border-radius: 10px;
+  position: relative;
+  margin: 15vh;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.view__faculty {
+  display: flex;
+  justify-content: center;
+}
+.ann__heading {
+  font-family: "Roboto", sans-serif;
+  font-size: 2.4rem;
+  font-weight: bold;
+  text-align: left;
+  letter-spacing: 0.02em;
+  color: #0a7401;
+}
+.create__announcement__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 20vw;
+  padding: 20px;
+}
+
+.view__announcements__container input,
+textarea {
+  margin: 20px;
+  width: 100%;
+  border: 2px solid black;
+  border-radius: 8px;
+}
+.view__announcements__container ::placeholder {
+  width: 100%;
+  text-align: center;
+}
+.label label {
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight: 600;
+  text-align: left;
+}

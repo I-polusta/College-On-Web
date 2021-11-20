@@ -1,15 +1,39 @@
 import axios from "axios";
-const API_URL = "http://192.168.0.124:8080/";
-
+import { BaseUrl } from "./BaseUrl";
+import authHeader from "./AuthHeader";
 class service_name {
   createAnnouncement(data) {
-    return axios.post(API_URL + "create/announcement", data);
+    return axios.post(BaseUrl() + "create/announcement", data, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("user")}`,
+      },
+    });
   }
   deleteAnnouncement(data) {
-    return axios.post(API_URL + "delete/announcement", data);
+    return axios.post(
+      BaseUrl() + "delete/announcement",
+
+      data,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("user")}`,
+        },
+      }
+    );
   }
   viewAnnouncement() {
-    return axios.get(API_URL + "show/announcement");
+    return axios.get(BaseUrl() + "show/announcement", {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("user")}`,
+      },
+    });
+  }
+  logOut() {
+    localStorage.removeItem("user2");
+    localStorage.removeItem("isAuthenticatedLogin");
   }
 }
 

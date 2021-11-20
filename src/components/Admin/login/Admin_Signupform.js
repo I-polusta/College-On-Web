@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
-import admin__service from "../../../API/admin__service";
+import service_name from "../../../API/AuthService";
 import image from "../../../assets/admin__login.png";
+import LoginNavbar from "../../navbar/Auth__pages/LoginNavbar";
 function Admin_Signupform() {
   const history = useHistory();
   const [username, setUsername] = useState();
@@ -19,7 +20,7 @@ function Admin_Signupform() {
       const newEntry = { ...user };
       setallEntery([...allEntry, newEntry]);
       let object = { username: newEntry.username };
-      await admin__service
+      await service_name
         .signupAdmin(user)
         .then((response) => {
           console.log(response);
@@ -80,10 +81,7 @@ function Admin_Signupform() {
 
   return (
     <div className="container">
-      <nav>
-        <a href="#">LOGO</a>
-      </nav>
-
+      <LoginNavbar />
       <div className="main__container">
         <div className="login__container">
           <h1>Admin Sign Up</h1>
@@ -105,7 +103,7 @@ function Admin_Signupform() {
             ></input>
 
             <p className="required">{userError.email}</p>
-            <input type="submit" value="Sign In" />
+            <input type="submit" value="GET OTP" />
           </form>
         </div>
 

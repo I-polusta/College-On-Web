@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import service_name from "../../API/Announcement_service";
+import Admin__Navbar from "../../components/navbar/admin/Admin__Navbar";
+import Admin__Sidebar from "../../components/navbar/admin/Admin__Sidebar";
+import "./Create_announcement.css";
 
 export class Create_announcement extends Component {
   handleSubmit = async (e) => {
@@ -44,29 +48,57 @@ export class Create_announcement extends Component {
   };
   render() {
     return (
-      <div>
-        <h1>Create Post</h1>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            required
-            type="text"
-            ref={(input) => (this.getTitle = input)}
-            placeholder="Enter Post Title"
-          />
-          <br />
-          <br />
-          <textarea
-            required
-            rows="5"
-            ref={(input) => (this.getMessage = input)}
-            cols="28"
-            placeholder="Enter Post"
-          />
-          <br />
-          <br />
-          <button>Post</button>
-        </form>
-      </div>
+      <>
+        <Admin__Navbar />
+        <Admin__Sidebar />
+        <div className="root__container">
+          <div className="container__one">
+            <div className="container__top">
+              <div className="heading__component">
+                <h2>ALL ANNOUNCEMENTS</h2>
+              </div>
+              <div>
+                <Link
+                  to="/all-announcements"
+                  style={{ textDecoration: "none" }}
+                >
+                  <button className="viewadd__faculty__btn">
+                    VIEW ANNOUNCEMENT
+                  </button>
+                </Link>
+              </div>
+            </div>
+            <div className="view__faculty">
+              <form
+                onSubmit={this.handleSubmit}
+                className="create__announcement__form"
+              >
+                <div className="label">
+                  <label>Subject</label>
+                </div>
+                <input
+                  required
+                  type="text"
+                  ref={(input) => (this.getTitle = input)}
+                  placeholder="Enter Post Title"
+                />
+                <div className="label">
+                  <label>Message</label>
+                </div>
+                <textarea
+                  required
+                  rows="5"
+                  ref={(input) => (this.getMessage = input)}
+                  cols="28"
+                />
+                <button className="viewadd__faculty__btn">
+                  ADD ANNOUNCEMENT
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </>
     );
   }
 }

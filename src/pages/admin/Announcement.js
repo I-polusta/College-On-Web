@@ -4,7 +4,7 @@ import service_name from "../../API/Announcement_service";
 
 export class Announcement extends Component {
   handleDelete = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     const date = this.props.announcement.date;
     const data = {
       date,

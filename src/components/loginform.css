@@ -43,8 +43,10 @@
   width: 100%;
 }
 .login__container h1 {
+  text-align: center;
   font-weight: bold;
   font-size: 2.5em;
+  font-weight: 900;
   color: #039703;
 }
 .login__container a {
@@ -80,6 +82,7 @@ img {
   font-weight: bold;
   margin: 10px;
   font-size: 1.2em;
+  text-align: center;
 }
 input {
   margin-top: 10px;
@@ -101,12 +104,7 @@ input[type="submit"] {
 }
 
 input::placeholder {
-  width: 60%;
-  height: 10%;
-  font-size: 1.2em;
-  line-height: 20px;
   color: #039703;
-  opacity: 0.5;
 }
 .error {
   color: red;
@@ -184,12 +182,5 @@ form a {
 
   .login__container h2 {
     font-size: 1.4em;
-  }
-  input::placeholder {
-    width: 60%;
-    height: 100%;
-    font-size: 1.2em;
-    line-height: 18px;
-    color: #039703;
   }
 }

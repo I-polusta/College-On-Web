@@ -11,7 +11,7 @@
   margin: auto;
   margin-top: 10%;
   justify-content: space-around;
-  width: 60%;
+  width: 50%;
 }
 
 .usercards {
@@ -21,7 +21,6 @@
     rgba(35, 239, 17, 0.27) 100%
   );
   backdrop-filter: blur(60px);
-  /* Note: backdrop-filter has minimal browser support */
   border-radius: 10px;
   cursor: pointer;
 }

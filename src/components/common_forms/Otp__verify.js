@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
-import service_name from "../../API/Service";
+import service_name from "../../API/AuthService";
 import image from "../../assets/otp.png";
+import LoginNavbar from "../navbar/Auth__pages/LoginNavbar";
 
 function Otp__verify() {
   const history = useHistory();
@@ -53,9 +54,7 @@ function Otp__verify() {
 
   return (
     <div className="container">
-      <nav>
-        <a href="/">LOGO</a>
-      </nav>
+      <LoginNavbar />
       <div className="main__container">
         <div className="login__container">
           <h1>Enter your OTP</h1>

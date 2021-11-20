@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import image from "../../../assets/admin__login.png";
 import "../../loginform.css";
 import { useHistory } from "react-router";
-import admin__service from "../../../API/admin__service";
+import service_name from "../../../API/AuthService";
+import LoginNavbar from "../../navbar/Auth__pages/LoginNavbar";
 
 function Admin__loginform() {
   const history = useHistory();
@@ -16,24 +17,25 @@ function Admin__loginform() {
       username,
       password,
     };
+    let object = {};
     setUserError(Validate(userDetails));
     if (Object.keys(userError).length === 0) {
-      await admin__service
+      await service_name
         .verifyAdminLogin(userDetails)
         .then((response) => {
           console.log(response);
-          const token = response.data.token;
           if (response.status === 401)
             alert("Please create a account to login");
-          if (token) {
-            window.localStorage.setItem("admin_token", token);
-            history.push("/dashboard");
+          if (response.data.token) {
+            const { token } = response.data.token;
+            localStorage.setItem("user2", JSON.stringify(token));
+            localStorage.setItem("isAuthenticatedLogin", true);
+            history.push("/viewfaculty");
           }
-          if (!token) {
+          if (!response.data.token) {
             if (response.data === "false")
               alert("Incorrect Username or Password. Try Again");
-            if (response.data === "User not found");
-            {
+            if (response.data === "User not found") {
               alert("User not found. Please create your account");
               history.push("/admin-signup");
             }
@@ -74,10 +76,7 @@ function Admin__loginform() {
 
   return (
     <div className="container">
-      <nav>
-        <a href="/">LOGO</a>
-      </nav>
-
+      <LoginNavbar />
       <div className="main__container">
         <div className="login__container">
           <h1>Admin</h1>

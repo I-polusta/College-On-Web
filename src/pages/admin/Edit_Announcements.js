@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
 class Edit_Announcements extends Component {
   handleEdit = (e) => {
     e.preventDefault();

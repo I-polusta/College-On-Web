@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
 import image from "../../../assets/create__pasword.png";
-import admin__service from "../../../API/admin__service";
+import service_name from "../../../API/AuthService";
+import LoginNavbar from "../../navbar/Auth__pages/LoginNavbar";
 function Admin_resetpassword() {
   const history = useHistory();
   const [password, setPass] = useState();
@@ -15,7 +16,7 @@ function Admin_resetpassword() {
       password: password,
     };
     if (password === newpass) {
-      await admin__service
+      await service_name
         .createPasswordAdmin(userpassword)
         .then((response) => {
           console.log(response);
@@ -35,10 +36,7 @@ function Admin_resetpassword() {
 
   return (
     <div className="container">
-      <nav>
-        <a href="/">LOGO</a>
-      </nav>
-
+      <LoginNavbar />
       <div className="main__container">
         <div className="login__container">
           <h1>Create Password</h1>

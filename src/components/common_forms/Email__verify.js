@@ -1,8 +1,9 @@
 import React from "react";
 import { useHistory } from "react-router";
 import { useState } from "react/cjs/react.development";
-import service_name from "../../API/Service";
+import service_name from "../../API/AuthService";
 import image from "../../assets/email__verify.png";
+import LoginNavbar from "../navbar/Auth__pages/LoginNavbar";
 
 function Email__verify() {
   const history = useHistory();
@@ -30,8 +31,15 @@ function Email__verify() {
             state: object,
           });
         }
+        if (response.data === "OTP already sent") {
+          history.push({
+            pathname: "/verifyOtp",
+            state: object,
+          });
+        }
         if (response.data === "Invalid Email") {
           alert("user does not exist. PLease create a account");
+          history.push("/student-sign");
         }
       })
       .catch((error) => {
@@ -45,9 +53,7 @@ function Email__verify() {
 
   return (
     <div className="container">
-      <nav>
-        <a href="/">LOGO</a>
-      </nav>
+      <LoginNavbar />
       <div className="main__container">
         <div className="login__container">
           <h1>Enter Email Id</h1>
