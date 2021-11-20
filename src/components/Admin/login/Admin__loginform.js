@@ -2,15 +2,14 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import image from "../../../assets/admin__login.png";
 import "../../loginform.css";
-import { validEmail, validPassword } from "../../Validation/Validator";
 import { useHistory } from "react-router";
-import admin__service from "../../../API/admin__service";
+import service_name from "../../../API/AuthService";
+import LoginNavbar from "../../navbar/Auth__pages/LoginNavbar";
 
 function Admin__loginform() {
   const history = useHistory();
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
-  const [isSubmit, setIsSubmit] = useState(false);
   const [userError, setUserError] = useState({});
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,21 +17,28 @@ function Admin__loginform() {
       username,
       password,
     };
+    let object = {};
     setUserError(Validate(userDetails));
-    if (Object.keys(userError).length === 0 && isSubmit) {
-      await admin__service
+    if (Object.keys(userError).length === 0) {
+      await service_name
         .verifyAdminLogin(userDetails)
         .then((response) => {
           console.log(response);
-          const token = response.data.token;
           if (response.status === 401)
             alert("Please create a account to login");
-          if (token) {
-            window.localStorage.setItem(1, token);
-            history.push("/dashboard");
+          if (response.data.token) {
+            const { token } = response.data.token;
+            localStorage.setItem("user2", JSON.stringify(token));
+            localStorage.setItem("isAuthenticatedLogin", true);
+            history.push("/viewfaculty");
           }
-          if (!token) {
-            alert("login failed");
+          if (!response.data.token) {
+            if (response.data === "false")
+              alert("Incorrect Username or Password. Try Again");
+            if (response.data === "User not found") {
+              alert("User not found. Please create your account");
+              history.push("/admin-signup");
+            }
           }
         })
         .catch((error) => {
@@ -48,8 +54,7 @@ function Admin__loginform() {
     const error = {};
     const regexMail =
       /^[\w!#$%&'+/=?`{|}~^-]+(?:\.[\w!#$%&'+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}/;
-    const regexPass =
-      /^[\w!#$%&'+/=?`{|}~^-]+(?:\.[\w!#$%&'+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}/;
+    const regexPass = /^[a-zA-Z0-9@#!$%^_]{8,}$/;
 
     if (!values.username) {
       error.email = "**Email Is Required!";
@@ -71,10 +76,7 @@ function Admin__loginform() {
 
   return (
     <div className="container">
-      <nav>
-        <a href="#">LOGO</a>
-      </nav>
-
+      <LoginNavbar />
       <div className="main__container">
         <div className="login__container">
           <h1>Admin</h1>
@@ -92,11 +94,7 @@ function Admin__loginform() {
               onChange={(e) => handleChange(e, "password")}
             ></input>
             <p className="required">{userError.password}</p>
-            <Link to="verifyEmail">
-              <a className="forgot" href="#">
-                Forgot Password
-              </a>
-            </Link>
+            <a href="verifyEmail">Forgot Password</a>
             <input type="submit" value="Log In" />
           </form>
         </div>

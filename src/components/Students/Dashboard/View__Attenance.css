@@ -1,0 +1,15 @@
+.table__att {
+  width: 100%;
+}
+.view__faculty12 {
+  width: 100%;
+}
+.marks__container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+td {
+  font-size: 20px;
+}

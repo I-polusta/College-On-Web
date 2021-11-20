@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+
 import { useHistory } from "react-router";
 import image from "../../assets/create__pasword.png";
-import service_name from "../../API/Service";
+import service_name from "../../API/AuthService";
+import LoginNavbar from "../navbar/Auth__pages/LoginNavbar";
 function Password__form() {
   const history = useHistory();
   const [password, setPass] = useState();
@@ -21,7 +22,6 @@ function Password__form() {
         .then((response) => {
           if (response.data === "Password Valid\nStudent SignUp Successful")
             history.push("/student-login");
-
           console.log(response);
         })
         .catch((error) => {
@@ -37,10 +37,7 @@ function Password__form() {
 
   return (
     <div className="container">
-      <nav>
-        <a href="/">LOGO</a>
-      </nav>
-
+      <LoginNavbar />
       <div className="main__container">
         <div className="login__container">
           <h1>Create Password</h1>

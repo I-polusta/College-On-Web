@@ -1,28 +1,32 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
-import admin__service from "../../../API/admin__service";
+import service_name from "../../../API/AuthService";
 import image from "../../../assets/otp.png";
+import LoginNavbar from "../../navbar/Auth__pages/LoginNavbar";
 
 function Admin_otp() {
   const history = useHistory();
   const [otp, setOtp] = useState();
+  const [disable, setDisable] = useState(false);
   const userOtp = parseInt(otp, 10);
-  const OTP = {
-    userOtp,
+  let object = {
+    userOtp: userOtp,
+    username: history.location.state.username,
   };
   const handleOtp = async (e) => {
     e.preventDefault();
+    setDisable(true);
 
-    await admin__service
-      .verifyOtpAdmin(OTP)
+    await service_name
+      .verifyOtpAdmin(object)
       .then((response) => {
         console.log(response);
         if (response.data === true) {
-          console.log(response);
-          history.push("/resetpassword-admin");
+          history.push({
+            pathname: "/resetpassword-admin",
+            state: object,
+          });
         } else if (response.data === false) {
-          console.log(typeof OTP);
-          console.log(typeof userOtp);
           window.alert("wrong");
         }
       })
@@ -36,9 +40,7 @@ function Admin_otp() {
 
   return (
     <div className="container">
-      <nav>
-        <a href="/">LOGO</a>
-      </nav>
+      <LoginNavbar />
       <div className="main__container">
         <div className="login__container">
           <h1>Enter your OTP</h1>
@@ -52,7 +54,7 @@ function Admin_otp() {
 
             <input type="submit" value="Verify" />
           </form>
-          <a className="otp__resend" href="#" disabled="disabled">
+          <a className="otp__resend" href="#">
             Resend OTP after 30secs
           </a>
         </div>

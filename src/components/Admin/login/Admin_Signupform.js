@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
-import admin__service from "../../../API/admin__service";
+import service_name from "../../../API/AuthService";
 import image from "../../../assets/admin__login.png";
+import LoginNavbar from "../../navbar/Auth__pages/LoginNavbar";
 function Admin_Signupform() {
   const history = useHistory();
   const [username, setUsername] = useState();
   const [name, setName] = useState();
-  const [isSubmit, setIsSubmit] = useState(false);
   const [userError, setUserError] = useState({});
-
   const [allEntry, setallEntery] = useState([]);
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,23 +16,36 @@ function Admin_Signupform() {
       username,
     };
     setUserError(Validate(user));
-    if (Object.keys(userError).length === 0 && isSubmit) {
+    if (Object.keys(userError).length === 0) {
       const newEntry = { ...user };
       setallEntery([...allEntry, newEntry]);
       let object = { username: newEntry.username };
-
-      await admin__service
+      await service_name
         .signupAdmin(user)
         .then((response) => {
+          console.log(response);
           if (response.data === "Valid email OTP Sent") {
-            console.log(response);
             history.push({
               pathname: "/verifyOtp-admin",
               state: object,
             });
           }
-          if (response.data === "User already present")
+          if (response.data === "User not verified") {
+            history.push({
+              pathname: "/verifyOtp-admin",
+              state: object,
+            });
+          }
+          if (response.data === "User already present") {
             window.alert(response.data + " please log in");
+            history.push("/admin-login");
+          } else if (response.data === "Otp verified create password") {
+            window.confirm(response.data);
+            history.push({
+              pathname: "/resetpassword-admin",
+              state: object,
+            });
+          }
         })
         .catch((error) => {
           console.log(error);
@@ -51,8 +63,7 @@ function Admin_Signupform() {
     const regexMail =
       /^[\w!#$%&'+/=?`{|}~^-]+(?:\.[\w!#$%&'+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}/;
     const regexName = /^[A-Za-z. ]{3,30}$/;
-    const regexPass =
-      /^[\w!#$%&'+/=?`{|}~^-]+(?:\.[\w!#$%&'+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}/;
+    const regexPass = /^[a-zA-Z0-9@#!$%^_]{8,}$/;
 
     if (!values.name) {
       error.Name = "**Name Is Required!";
@@ -70,10 +81,7 @@ function Admin_Signupform() {
 
   return (
     <div className="container">
-      <nav>
-        <a href="#">LOGO</a>
-      </nav>
-
+      <LoginNavbar />
       <div className="main__container">
         <div className="login__container">
           <h1>Admin Sign Up</h1>
@@ -95,7 +103,7 @@ function Admin_Signupform() {
             ></input>
 
             <p className="required">{userError.email}</p>
-            <input type="submit" value="Sign In" />
+            <input type="submit" value="GET OTP" />
           </form>
         </div>
 

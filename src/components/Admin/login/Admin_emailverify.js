@@ -1,7 +1,8 @@
 import React from "react";
 import { useHistory } from "react-router";
 import { useState } from "react/cjs/react.development";
-import admin_service from "../../API/admin__service";
+import LoginNavbar from "../../../navbar/LoginNavbar";
+import service_name from "../../../API/AuthService";
 import image from "../../assets/email__verify.png";
 
 function Admin_emailverify() {
@@ -22,6 +23,11 @@ function Admin_emailverify() {
         if (response.data === "Invalid Email") {
           alert("user does not exist. PLease create a account");
         }
+        if (response.data === "OTP already sent") {
+          history.push({
+            pathname: "/verifyOtp-admin",
+          });
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -34,9 +40,7 @@ function Admin_emailverify() {
 
   return (
     <div className="container">
-      <nav>
-        <a href="/">LOGO</a>
-      </nav>
+      <LoginNavbar />
       <div className="main__container">
         <div className="login__container">
           <h1>Enter Email Id</h1>

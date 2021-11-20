@@ -3,12 +3,11 @@ import "./UserSelection.css";
 import Student from "../../assets/userS.png";
 import Teacher from "../../assets/userT.png";
 import { Link } from "react-router-dom";
+import LoginNavbar from "../navbar/Auth__pages/LoginNavbar";
 function UserSelection() {
   return (
     <div className="container">
-      <nav>
-        <a href="/">LOGO</a>
-      </nav>
+      <LoginNavbar />
       <div className="text__container">
         <h3>Log In into your account</h3>
       </div>

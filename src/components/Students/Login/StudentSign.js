@@ -1,50 +1,69 @@
-import axios from "axios";
 import React, { useState } from "react";
 import { useHistory } from "react-router";
-import service_name from "../../../API/Service";
+import service_name from "../../../API/AuthService";
 import image from "../../../assets/studentL.png";
-import logo from "../../../assets/logotbg.png";
+import { PropagateLoader } from "react-spinners";
+import { css } from "@emotion/react";
+import { validEmail, validPassword } from "../../Validation/regex";
+import LoginNavbar from "../../navbar/Auth__pages/LoginNavbar";
 function StudentSign(props) {
   const history = useHistory();
   const [username, setUsername] = useState();
   const [name, setName] = useState();
-  const [isSubmit, setIsSubmit] = useState(false);
-  const [userError, setUserError] = useState({});
   const [allEntry, setallEntery] = useState([]);
+  const [emailAlert, setEmailAlert] = useState("");
+  const [loader, setLoader] = useState(false);
+  const loaderCSS = css`
+    ${"" /* color: #7c64ef; */}
+    position: absolute;
+    top: 32%;
+    left: 33%;
+  `;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsSubmit(true);
     const user = {
       name,
       username,
     };
-    setUserError(Validate(user));
-    if (Object.keys(userError).length === 0 && isSubmit) {
-      const newEntry = { ...user };
-      setallEntery([...allEntry, newEntry]);
-      let object = { username: newEntry.username };
+
+    const newEntry = { ...user };
+    setallEntery([...allEntry, newEntry]);
+    let object = { username: newEntry.username };
+    if (username === "") {
+      alert("Email required.");
+    } else if (!validEmail.test(username)) {
+      alert("Your email is invalid. Must contain '@' and a domain.");
+    } else {
+      setLoader(true);
       await service_name
         .signupStudent(user)
         .then((response) => {
+          console.log(response);
           if (response.data === "Valid Email OTP Sent") {
-            console.log(response);
+            history.push({
+              pathname: "/verifyOtp",
+              state: object,
+            });
+          }
+          if (response.data === "User not verified") {
+            setLoader(false);
             history.push({
               pathname: "/verifyOtp",
               state: object,
             });
           }
           if (response.data === "User already present") {
+            setLoader(false);
             window.alert(response.data + " please log in");
             history.push("student-login");
           } else if (response.data === "Otp verified create password") {
+            setLoader(false);
             window.confirm(response.data);
             history.push({
               pathname: "/resetpassword",
               state: object,
             });
-          } else if (response.data === "OTP still not verified") {
-            window.alert(response.data);
-            history.push("/verifyOtp");
           }
         })
         .catch((error) => {
@@ -58,54 +77,36 @@ function StudentSign(props) {
     else if (id == "username") setUsername(e.target.value);
   };
 
-  const Validate = (values) => {
-    const error = {};
-    const regexMail =
-      /^[\w!#$%&'+/=?`{|}~^-]+(?:\.[\w!#$%&'+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}/;
-    const regexName = /^[A-Za-z. ]{3,30}$/;
-    const regexPass =
-      /^[\w!#$%&'+/=?`{|}~^-]+(?:\.[\w!#$%&'+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,6}/;
-
-    if (!values.name) {
-      error.Name = "**Name Is Required!";
-    } else if (!regexName.test(values.name)) {
-      error.Name = "**This is not a valid Name format!";
-    }
-    if (!values.username) {
-      error.email = "**Email Is Required!";
-    } else if (!regexMail.test(values.username)) {
-      error.email = "**This is not a valid Email format!";
-    }
-
-    return error;
-  };
-
   return (
     <div className="container">
-      <nav>
-        <img src={logo} alt="logo" />
-      </nav>
-
+      <LoginNavbar />
       <div className="main__container">
         <div className="login__container">
           <h1>Student Sign Up</h1>
           <form className="admin__login" onSubmit={handleSubmit}>
+            <PropagateLoader loading={loader} css={loaderCSS}></PropagateLoader>
             <input
               type="text"
               placeholder="Enter your Name"
               name="name"
               onChange={(e) => handleChange(e, "name")}
-            ></input>
-
-            <p className="required">{userError.Name}</p>
+            />
             <input
               type="email"
               placeholder="Email Address"
               name="username"
-              onChange={(e) => handleChange(e, "username")}
-            ></input>
-
-            <p className="required">{userError.email}</p>
+              onChange={(e) => {
+                setUsername(e.target.value);
+                if (e.target.value === "") {
+                  setEmailAlert("Email is required.");
+                } else if (!validEmail.test(e.target.value)) {
+                  setEmailAlert("Enter a valid email");
+                } else {
+                  setEmailAlert("");
+                }
+              }}
+            />{" "}
+            <p className="alerts">{emailAlert}</p>
             <input type="submit" value="Get OTP" />
           </form>
         </div>
