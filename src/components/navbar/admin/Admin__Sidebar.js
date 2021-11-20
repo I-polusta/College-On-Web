@@ -27,12 +27,6 @@ function Admin__Sidebar() {
               </li>
             );
           })}
-          <li>
-            {" "}
-            <a href="" className="nav-text">
-              Logout
-            </a>
-          </li>
         </ul>
       </div>
     </>

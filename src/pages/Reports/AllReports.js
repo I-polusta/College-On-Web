@@ -35,26 +35,28 @@ export class AllReports extends Component {
       <>
         <Admin__Navbar />
         <Admin__Sidebar />
-        <div className="view__announcement">
-          <div className="view__faculty__top__container">
-            <h1>ALL reports</h1>
-          </div>
-          {reports.map((info) => {
-            return (
-              <div className="announcement__view">
-                <div className="announcement__span">
-                  <div className="each__announcement">
-                    <h6>Date:{info.date}</h6>
-                    <h2 className="h2__heading">Subject: {info.subject}</h2>
-                    <p className="announcement__body">Message: {info.user}</p>
-                    <p className="announcement__body">
-                      Message: {info.problem}
-                    </p>
+        <div className="root__container">
+          <div className="view__announcement">
+            <div className="view__faculty__top__container">
+              <h1>ALL reports</h1>
+            </div>
+            {reports.map((info) => {
+              return (
+                <div className="announcement__view">
+                  <div className="announcement__span">
+                    <div className="each__announcement">
+                      <h6>Date:{info.date}</h6>
+                      <h2 className="h2__heading">Subject: {info.subject}</h2>
+                      <p className="announcement__body">Message: {info.user}</p>
+                      <p className="announcement__body">
+                        Message: {info.problem}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </>
     );

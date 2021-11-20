@@ -11,12 +11,6 @@ export const AdminSidebarData = [
     cName: "nav-text",
   },
   {
-    title: "Classes",
-    path: "/show-class-admin",
-    icon: <IoIcons.IoMdPeople />,
-    cName: "nav-text",
-  },
-  {
     title: "Announcements",
     path: "/all-announcements",
     icon: <FaIcons.FaEnvelopeOpenText />,
@@ -24,7 +18,7 @@ export const AdminSidebarData = [
   },
   {
     title: "Reports",
-    path: "/all-reports",
+    path: "/allreports",
     icon: <IoIcons.IoIosPaper />,
     cName: "nav-text",
   },
